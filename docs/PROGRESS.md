@@ -20,7 +20,8 @@
 - From Phase C: volar plate/tendon overlap, thin source median nerve, fat thin in the hand, cut faces flat colour.
 
 ## Next step
-- User uploads HDRI to data/upload/ → copy to assets/env/hdri_1k.hdr. Then Phase D: headset test, numbered corrections.
+- User uploads HDRI (dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/studio_small_09_1k.hdr) to data/upload/ → copy to assets/env/hdri_1k.hdr. Optional: 3–5 de-identified intra-op photos to tune colours/gloss; Quest 3 fps in realistic view.
+- Then Phase D: headset test, numbered corrections.
 
 ## Key files
 - js/tissues.js, fibres.js, anatomy.js (setView), menu.js (View buttons), main.js · assets/tissues.json, assets/tex/*.ktx2
