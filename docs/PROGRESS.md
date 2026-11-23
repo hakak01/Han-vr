@@ -22,7 +22,7 @@
 - Fibre direction = one axis per mesh. Cut faces flat colour.
 
 ## Next step
-- Phase D: user tests in headset, sends numbered corrections; fix only those.
+- Phase D: user tests in headset (fat holes, sagittal bands, LRL/SRL, Guyon roof, RMB, thumb oblique pulley, pulleys/extensor), sends numbered corrections; fix only those.
 
 ## Key files
 - tools/build_gaps.py, gaps_finger.py, gaps_wrist.py, gaps_fat.py, gapgeom.py, glbio.py, check_gaps.py
