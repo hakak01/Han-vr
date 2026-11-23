@@ -1,0 +1,2125 @@
+[
+ {
+  "name": "Communicating branch of median nerve with ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96
+ },
+ {
+  "name": "Ulnar recurrent artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96
+ },
+ {
+  "name": "Abductor digiti minimi of hand (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1176,
+  "kind": "insertion"
+ },
+ {
+  "name": "Abductor digiti minimi of hand (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 784,
+  "kind": "origin"
+ },
+ {
+  "name": "Abductor digiti minimi of hand",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 672
+ },
+ {
+  "name": "Abductor pollicis brevis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 624
+ },
+ {
+  "name": "Abductor pollicis longus (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 280,
+  "kind": "insertion"
+ },
+ {
+  "name": "Abductor pollicis longus (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1608,
+  "kind": "origin"
+ },
+ {
+  "name": "Abductor pollicis longus",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2462
+ },
+ {
+  "name": "Adductor pollicis (insertion 1)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 296,
+  "kind": "insertion"
+ },
+ {
+  "name": "Adductor pollicis (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 536,
+  "kind": "insertion"
+ },
+ {
+  "name": "Anconeus muscle (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 432,
+  "kind": "insertion"
+ },
+ {
+  "name": "Anconeus muscle (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 524,
+  "kind": "origin"
+ },
+ {
+  "name": "Anconeus muscle",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1442
+ },
+ {
+  "name": "Annular ligament of radius",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 376
+ },
+ {
+  "name": "Antebrachial fascia",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 4460
+ },
+ {
+  "name": "Anterior branch of medial antebrachial cutaneous nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240
+ },
+ {
+  "name": "Anterior interosseous nerve of forearm",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240
+ },
+ {
+  "name": "Anterior region of arm",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1028
+ },
+ {
+  "name": "Anterior region of elbow",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 428
+ },
+ {
+  "name": "Anterior region of forearm",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1168
+ },
+ {
+  "name": "Anterior region of wrist",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 212
+ },
+ {
+  "name": "Articular capsule of elbow joint",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1728
+ },
+ {
+  "name": "Articular capsule of radiocarpal joint",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1342
+ },
+ {
+  "name": "Articular capsules of distal interphalangeal joints",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1504
+ },
+ {
+  "name": "Articular capsules of metacarpophalangeal joints",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1568
+ },
+ {
+  "name": "Articular capsules of proximal interphalangeal joints",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1392
+ },
+ {
+  "name": "Articular disc of distal radio-ulnar joint",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 28
+ },
+ {
+  "name": "Basilic vein",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 720
+ },
+ {
+  "name": "Biceps brachii muscle (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 420,
+  "kind": "insertion"
+ },
+ {
+  "name": "Bicipitoradial bursa",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1472
+ },
+ {
+  "name": "Brachial artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 480
+ },
+ {
+  "name": "Brachial fascia",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3018
+ },
+ {
+  "name": "Brachial veins",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384
+ },
+ {
+  "name": "Brachialis muscle (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1020,
+  "kind": "insertion"
+ },
+ {
+  "name": "Brachialis muscle (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2896,
+  "kind": "origin"
+ },
+ {
+  "name": "Brachialis muscle",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3478
+ },
+ {
+  "name": "Brachioradialis muscle (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 512,
+  "kind": "insertion"
+ },
+ {
+  "name": "Brachioradialis muscle (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 504,
+  "kind": "origin"
+ },
+ {
+  "name": "Brachioradialis muscle",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 7312
+ },
+ {
+  "name": "Capitate bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1284
+ },
+ {
+  "name": "Capitohamate interosseous ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Cephalic vein",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1152
+ },
+ {
+  "name": "Collateral interphalangeal ligaments of hand",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1968
+ },
+ {
+  "name": "Collateral metacarpophalangeal ligaments",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1040
+ },
+ {
+  "name": "Common extensor tendon (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 656,
+  "kind": "origin"
+ },
+ {
+  "name": "Common flexor tendon sheath",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 13968
+ },
+ {
+  "name": "Common flexor tendon (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 688,
+  "kind": "origin"
+ },
+ {
+  "name": "Common interosseous artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 48
+ },
+ {
+  "name": "Common palmar digital arteries",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 528
+ },
+ {
+  "name": "Common palmar digital branches of median nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384
+ },
+ {
+  "name": "Common palmar digital branches of ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192
+ },
+ {
+  "name": "Cruciform part of fibrous sheath of digit of hand",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 4728
+ },
+ {
+  "name": "Cubital fossa",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 136
+ },
+ {
+  "name": "Deep brachial artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 144
+ },
+ {
+  "name": "Deep branch of radial nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 336
+ },
+ {
+  "name": "Deep branch of ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240
+ },
+ {
+  "name": "Deep head of flexor pollicis brevis (origin 1)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 556,
+  "kind": "origin"
+ },
+ {
+  "name": "Deep head of flexor pollicis brevis (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 960,
+  "kind": "origin"
+ },
+ {
+  "name": "Deep head of flexor pollicis brevis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 746
+ },
+ {
+  "name": "Deep head of pronator teres",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1114
+ },
+ {
+  "name": "Deep palmar arch",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384
+ },
+ {
+  "name": "Deep transverse metacarpal ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 60
+ },
+ {
+  "name": "Deep venous palmar arch",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 816
+ },
+ {
+  "name": "Distal phalanx of fifth finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 466
+ },
+ {
+  "name": "Distal phalanx of first finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1040
+ },
+ {
+  "name": "Distal phalanx of fourth finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 452
+ },
+ {
+  "name": "Distal phalanx of second finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 656
+ },
+ {
+  "name": "Distal phalanx of third finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 640
+ },
+ {
+  "name": "Dorsal branch of ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240
+ },
+ {
+  "name": "Dorsal carpal anastomosis",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96
+ },
+ {
+  "name": "Dorsal carpal branch of ulnar artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288
+ },
+ {
+  "name": "Dorsal carpometacarpal ligaments",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 148
+ },
+ {
+  "name": "Dorsal digital arteries of hand",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2496
+ },
+ {
+  "name": "Dorsal digital branches of radial nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2256
+ },
+ {
+  "name": "Dorsal digital branches of ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 816
+ },
+ {
+  "name": "Dorsal digital veins of hand",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3072
+ },
+ {
+  "name": "Dorsal fascia of hand",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1445
+ },
+ {
+  "name": "Dorsal intercarpal ligaments",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 440
+ },
+ {
+  "name": "Dorsal interossei muscles of hand (origin 1)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1116,
+  "kind": "origin"
+ },
+ {
+  "name": "Dorsal interossei muscles of hand (origin 2)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 948,
+  "kind": "origin"
+ },
+ {
+  "name": "Dorsal interossei muscles of hand (origin 3)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 940,
+  "kind": "origin"
+ },
+ {
+  "name": "Dorsal interossei muscles of hand (origin 4)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 328,
+  "kind": "origin"
+ },
+ {
+  "name": "Dorsal interossei muscles of hand (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 400,
+  "kind": "origin"
+ },
+ {
+  "name": "Dorsal interossei muscles of hand",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1364
+ },
+ {
+  "name": "Dorsal metacarpal arteries",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 960
+ },
+ {
+  "name": "Dorsal metacarpal ligaments",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 48
+ },
+ {
+  "name": "Dorsal radio-ulnar ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Dorsal radiocarpal ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 248
+ },
+ {
+  "name": "Dorsal scaphotriquetral ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 104
+ },
+ {
+  "name": "Dorsal surfaces of digits of hand",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 4260
+ },
+ {
+  "name": "Dorsal ulnocarpal ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 120
+ },
+ {
+  "name": "Dorsal venous network of hand",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 432
+ },
+ {
+  "name": "Dorsum of hand",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 712
+ },
+ {
+  "name": "Extensor carpi radialis brevis (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 260,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor carpi radialis brevis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3142
+ },
+ {
+  "name": "Extensor carpi radialis longus (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 244,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor carpi radialis longus (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1020,
+  "kind": "origin"
+ },
+ {
+  "name": "Extensor carpi radialis longus",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3706
+ },
+ {
+  "name": "Extensor carpi ulnaris (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 116,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor carpi ulnaris (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 196,
+  "kind": "origin"
+ },
+ {
+  "name": "Extensor digiti minimi",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2152
+ },
+ {
+  "name": "Extensor digitorum (insertion 1)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 280,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor digitorum (insertion 2)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 444,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor digitorum (insertion 3)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 340,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor digitorum (insertion 4)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 176,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor digitorum (insertion 5)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 220,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor digitorum (insertion 6)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 136,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor digitorum (insertion 7)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor digitorum (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 360,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor digitorum",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 6410
+ },
+ {
+  "name": "Extensor indicis (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 224,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor indicis (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 772,
+  "kind": "origin"
+ },
+ {
+  "name": "Extensor indicis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1142
+ },
+ {
+  "name": "Extensor pollicis brevis (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 296,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor pollicis brevis (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 948,
+  "kind": "origin"
+ },
+ {
+  "name": "Extensor pollicis brevis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1176
+ },
+ {
+  "name": "Extensor pollicis longus (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 260,
+  "kind": "insertion"
+ },
+ {
+  "name": "Extensor pollicis longus (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1040,
+  "kind": "origin"
+ },
+ {
+  "name": "Extensor pollicis longus",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1602
+ },
+ {
+  "name": "Extensor retinaculum of wrist",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 368
+ },
+ {
+  "name": "Fifth metacarpal bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 2178
+ },
+ {
+  "name": "First metacarpal bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 2434
+ },
+ {
+  "name": "Flexor carpi radialis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1666
+ },
+ {
+  "name": "Flexor carpi ulnaris (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 896,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digiti minimi of hand (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1128,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digiti minimi of hand (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240,
+  "kind": "origin"
+ },
+ {
+  "name": "Flexor digiti minimi of hand",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 308
+ },
+ {
+  "name": "Flexor digitorum profundus (insertion 1)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 220,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digitorum profundus (insertion 2)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 156,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digitorum profundus (insertion 3)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 260,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digitorum profundus (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 156,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digitorum profundus",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 7110
+ },
+ {
+  "name": "Flexor digitorum superficialis (insertion 1)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 496,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digitorum superficialis (insertion 2)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 532,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digitorum superficialis (insertion 3)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 516,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digitorum superficialis (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 480,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor digitorum superficialis (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 804,
+  "kind": "origin"
+ },
+ {
+  "name": "Flexor pollicis longus (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 136,
+  "kind": "insertion"
+ },
+ {
+  "name": "Flexor pollicis longus (origin 1)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1844,
+  "kind": "origin"
+ },
+ {
+  "name": "Flexor pollicis longus (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 224,
+  "kind": "origin"
+ },
+ {
+  "name": "Flexor pollicis longus",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1666
+ },
+ {
+  "name": "Flexor retinaculum of wrist",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 524
+ },
+ {
+  "name": "Fourth metacarpal bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 2306
+ },
+ {
+  "name": "Hamate bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1150
+ },
+ {
+  "name": "Humeral head of extensor carpi ulnaris",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 830
+ },
+ {
+  "name": "Humeral head of flexor carpi ulnaris",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3912
+ },
+ {
+  "name": "Humero-ulnar head of flexor digitorum superficialis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12798
+ },
+ {
+  "name": "Humerus",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 16268
+ },
+ {
+  "name": "Inferior lateral brachial cutaneous nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96
+ },
+ {
+  "name": "Inferior ulnar collateral artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240
+ },
+ {
+  "name": "Interosseous metacarpal ligaments",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 48
+ },
+ {
+  "name": "Interosseous membrane of forearm",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2766
+ },
+ {
+  "name": "Lateral antebrachial cutaneous nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288
+ },
+ {
+  "name": "Lateral bicipital groove",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 100
+ },
+ {
+  "name": "Lateral border of forearm",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 156
+ },
+ {
+  "name": "Lateral head of triceps brachii (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1152,
+  "kind": "origin"
+ },
+ {
+  "name": "Lateral head of triceps brachii",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3628
+ },
+ {
+  "name": "Lateral intermuscular septum of arm",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 160
+ },
+ {
+  "name": "Long head of biceps brachii",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3218
+ },
+ {
+  "name": "Long head of triceps brachii",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3950
+ },
+ {
+  "name": "Lumbrical muscles of hand",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1368
+ },
+ {
+  "name": "Lunate bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 864
+ },
+ {
+  "name": "Lunotriquetral interosseous ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Medial antebrachial cutaneous nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288
+ },
+ {
+  "name": "Medial bicipital groove",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 76
+ },
+ {
+  "name": "Medial brachial cutaneous nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288
+ },
+ {
+  "name": "Medial head of triceps brachii (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1540,
+  "kind": "origin"
+ },
+ {
+  "name": "Medial head of triceps brachii",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2686
+ },
+ {
+  "name": "Medial intermuscular septum of arm",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 312
+ },
+ {
+  "name": "Median antebrachial vein",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 864
+ },
+ {
+  "name": "Median cubital vein",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288
+ },
+ {
+  "name": "Median nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 864
+ },
+ {
+  "name": "Middle collateral artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 144
+ },
+ {
+  "name": "Middle phalanx of fifth finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 900
+ },
+ {
+  "name": "Middle phalanx of fourth finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1350
+ },
+ {
+  "name": "Middle phalanx of second finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1140
+ },
+ {
+  "name": "Middle phalanx of third finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1476
+ },
+ {
+  "name": "Muscular branches of median nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192
+ },
+ {
+  "name": "Muscular branches of radial nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 432
+ },
+ {
+  "name": "Muscular branches of ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96
+ },
+ {
+  "name": "Musculocutaneous nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240
+ },
+ {
+  "name": "Nail plate",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2760
+ },
+ {
+  "name": "Oblique cord",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Oblique head of adductor pollicis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 450
+ },
+ {
+  "name": "Opponens digiti minimi muscle of hand (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 304,
+  "kind": "origin"
+ },
+ {
+  "name": "Opponens digiti minimi muscle of hand",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 420
+ },
+ {
+  "name": "Opponens pollicis muscle",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384
+ },
+ {
+  "name": "Palmar aponeurosis",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1284
+ },
+ {
+  "name": "Palmar branch of median nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192
+ },
+ {
+  "name": "Palmar branch of ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192
+ },
+ {
+  "name": "Palmar capitohamate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Palmar carpal branch of radial artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96
+ },
+ {
+  "name": "Palmar carpometacarpal ligaments",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 416
+ },
+ {
+  "name": "Palmar digital veins",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 4752
+ },
+ {
+  "name": "Palmar interossei muscles",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 174
+ },
+ {
+  "name": "Palmar interphalangeal ligaments",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 864
+ },
+ {
+  "name": "Palmar lunotriquetral ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Palmar metacarpal ligaments",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 48
+ },
+ {
+  "name": "Palmar radio-ulnar ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 80
+ },
+ {
+  "name": "Palmar scaphotriquetral ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 256
+ },
+ {
+  "name": "Palmar surfaces of digits of hand",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3836
+ },
+ {
+  "name": "Palmar trapezoideocapitate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Palmaris longus muscle",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 4372
+ },
+ {
+  "name": "Perionyx",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 236
+ },
+ {
+  "name": "Pisiform bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 396
+ },
+ {
+  "name": "Pisohamate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Pisometacarpal ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Pisotriquetral ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 264
+ },
+ {
+  "name": "Posterior antebrachial cutaneous nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 432
+ },
+ {
+  "name": "Posterior branch of medial antebrachial cutaneous nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384
+ },
+ {
+  "name": "Posterior interosseous nerve of forearm",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288
+ },
+ {
+  "name": "Posterior region of arm",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 912
+ },
+ {
+  "name": "Posterior region of elbow",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 480
+ },
+ {
+  "name": "Posterior region of forearm",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1332
+ },
+ {
+  "name": "Posterior region of wrist",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 240
+ },
+ {
+  "name": "Pronator quadratus",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1020
+ },
+ {
+  "name": "Pronator teres (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 304,
+  "kind": "insertion"
+ },
+ {
+  "name": "Proper palmar digital branches of median nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1824
+ },
+ {
+  "name": "Proper palmar digital branches of ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 960
+ },
+ {
+  "name": "Quadrate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Radial artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 528
+ },
+ {
+  "name": "Radial collateral artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 432
+ },
+ {
+  "name": "Radial collateral ligament of wrist joint",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 144
+ },
+ {
+  "name": "Radial collateral ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 96
+ },
+ {
+  "name": "Radial foveola",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 56
+ },
+ {
+  "name": "Radial head of flexor digitorum superficialis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1276
+ },
+ {
+  "name": "Radial nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384
+ },
+ {
+  "name": "Radiate carpal ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 408
+ },
+ {
+  "name": "Radioscaphocapitate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 20
+ },
+ {
+  "name": "Scaphocapitate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Scaphoid bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1074
+ },
+ {
+  "name": "Scaphotrapeziotrapezoidal ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 144
+ },
+ {
+  "name": "Short head of biceps brachii",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2696
+ },
+ {
+  "name": "Medial border of forearm",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 156
+ },
+ {
+  "name": "Palm",
+  "layer": "skin",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 592
+ },
+ {
+  "name": "Palmar metacarpal arteries",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 720
+ },
+ {
+  "name": "Posterior interosseous artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192
+ },
+ {
+  "name": "Pronator teres (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 320,
+  "kind": "origin"
+ },
+ {
+  "name": "Proper palmar digital arteries",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 5184
+ },
+ {
+  "name": "Proximal phalanx of fifth finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1208
+ },
+ {
+  "name": "Proximal phalanx of first finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1368
+ },
+ {
+  "name": "Proximal phalanx of fourth finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1620
+ },
+ {
+  "name": "Proximal phalanx of second finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1664
+ },
+ {
+  "name": "Proximal phalanx of third finger of hand",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1968
+ },
+ {
+  "name": "Radial veins",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 384
+ },
+ {
+  "name": "Radiocapitate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Radius",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 2804
+ },
+ {
+  "name": "Recurrent interosseous artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288
+ },
+ {
+  "name": "Scapholunate interosseous ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Second metacarpal bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 3218
+ },
+ {
+  "name": "Subtendinous bursa of triceps brachii muscle",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1472
+ },
+ {
+  "name": "Superficial branch of radial nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 720
+ },
+ {
+  "name": "Superficial branch of ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 144
+ },
+ {
+  "name": "Superficial head of flexor pollicis brevis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 276
+ },
+ {
+  "name": "Superficial head of pronator teres",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2546
+ },
+ {
+  "name": "Superficial palmar arch",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 480
+ },
+ {
+  "name": "Superficial transverse metacarpal ligament",
+  "layer": "fascia_retinacula",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 192
+ },
+ {
+  "name": "Superficial venous palmar arch",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 720
+ },
+ {
+  "name": "Superior ulnar collateral artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 288
+ },
+ {
+  "name": "Supinator (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1320,
+  "kind": "insertion"
+ },
+ {
+  "name": "Supinator (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 484,
+  "kind": "origin"
+ },
+ {
+  "name": "Supinator",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2754
+ },
+ {
+  "name": "Synovial sheaths of digits of hand",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 6976
+ },
+ {
+  "name": "Tendon sheath - abd. pollicis longus - ext. pollicis brevis",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 680
+ },
+ {
+  "name": "Tendon sheath of extensor carpi ulnaris",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 960
+ },
+ {
+  "name": "Tendon sheath of extensor digiti minimi manus",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 592
+ },
+ {
+  "name": "Tendon sheath of extensor digitorum and extensor indicis",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2368
+ },
+ {
+  "name": "Tendon sheath of extensor pollicis longus",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 432
+ },
+ {
+  "name": "Tendon sheath of extensors carpi radialis",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 2304
+ },
+ {
+  "name": "Tendon sheath of flexor carpi radialis",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1088
+ },
+ {
+  "name": "Tendon sheath of flexor pollicis longus",
+  "layer": "tendon_sheath",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3136
+ },
+ {
+  "name": "Third metacarpal bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 3018
+ },
+ {
+  "name": "Transverse head of adductor pollicis",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1014
+ },
+ {
+  "name": "Trapeziotrapezoidal interosseous ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Trapezium bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 1026
+ },
+ {
+  "name": "Trapezoid bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 616
+ },
+ {
+  "name": "Trapezoideocapitate interosseous ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Triceps brachii muscle (insertion)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 904,
+  "kind": "insertion"
+ },
+ {
+  "name": "Triquetrocapitate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 20
+ },
+ {
+  "name": "Triquetrohamate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 12
+ },
+ {
+  "name": "Triquetrum bone",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 704
+ },
+ {
+  "name": "Ulna",
+  "layer": "bone",
+  "source": "BodyParts3D (ICP-fitted to Z-Anatomy)",
+  "approx": false,
+  "triangles": 3592
+ },
+ {
+  "name": "Ulnar artery",
+  "layer": "artery",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 336
+ },
+ {
+  "name": "Ulnar collateral ligament of wrist joint",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 128
+ },
+ {
+  "name": "Ulnar collateral ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 152
+ },
+ {
+  "name": "Ulnar head of extensor carpi ulnaris",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 582
+ },
+ {
+  "name": "Ulnar head of flexor carpi ulnaris (origin)",
+  "layer": "attachment",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 3432,
+  "kind": "origin"
+ },
+ {
+  "name": "Ulnar head of flexor carpi ulnaris",
+  "layer": "muscle",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 1466
+ },
+ {
+  "name": "Ulnar nerve",
+  "layer": "nerve",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 528
+ },
+ {
+  "name": "Ulnar veins",
+  "layer": "vein",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 432
+ },
+ {
+  "name": "Ulnocapitate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 128
+ },
+ {
+  "name": "Ulnolunate ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 104
+ },
+ {
+  "name": "Ulnotriquetral ligament",
+  "layer": "ligament_capsule",
+  "source": "Z-Anatomy",
+  "approx": false,
+  "triangles": 56
+ }
+]
