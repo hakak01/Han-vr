@@ -13,4 +13,12 @@
 - Selection: right side, Z-Anatomy upper-limb collections/parents, bottom below mid-humerus (z 1.246 m).
 - Gaps: docs/GAPS.md (3 missing, 8 partial).
 
-## Next: Phase B — WebXR viewer
+## Phase B — WebXR viewer: DONE (2026-11-23)
+- index.html + js/ (main, anatomy, looks, panel, menu, xr). three.js 0.170.0 from jsDelivr. No build step.
+- Colours/roughness/patterns/default layers: assets/look.json (edit, then reload page).
+- Tested headless: desktop load 2.4 s, 294 structures, 341 draw calls; clip/isolate/ghost/focus/search OK.
+- Tested with Meta's Quest 3 emulator (iwer): Enter VR, controllers, ray select, wrist menu, grab, 2-hand zoom, Exit OK.
+- Not testable here: real fps on Quest 3, passthrough look, wrist-menu comfort.
+- Hosting: GitHub Pages from main, root folder (must be switched on once in repo Settings → Pages).
+
+## Next: Phase C — build missing structures (docs/GAPS.md)
