@@ -20,6 +20,20 @@
     "nail":      { "color": "#ecd0c6", "roughness": 0.25, "clearcoat": 0.6,  "clearcoatRoughness": 0.10, "tex": "cartilage", "fibre": false, "tile": 20, "bump": 1.0, "cavity": 0.05, "roughVar": 0.05 },
     "sheath":    { "color": "#e8eef0", "roughness": 0.15, "clearcoat": 1.0,  "clearcoatRoughness": 0.05, "tex": "vessel",    "fibre": true,  "tile": 10, "bump": 0.6, "cavity": 0.05, "roughVar": 0.05, "opacity": 0.35 }
   },
+  "_palettes": "Menu View: Realistic = 'tissues' above (living). Cadaver = same, with these overrides. Colours from 12 embalmed, latex-injected dissection photos (median of small patches). Opacity/tex/tile/fibre cannot change per palette.",
+  "palettes": {
+    "cadaver": { "tissues": {
+      "muscle":   { "color": "#8a5a4a", "roughness": 0.5, "clearcoat": 0.6 },
+      "tendon":   { "color": "#f4e8d8" },
+      "ligament": { "color": "#e2d4c2" },
+      "nerve":    { "color": "#f0c49c", "cavity": 0.18 },
+      "artery":   { "color": "#d86a5e", "roughness": 0.3, "clearcoat": 0.85, "clearcoatRoughness": 0.06, "bump": 0.4, "cavity": 0.04 },
+      "vein":     { "color": "#a87c84", "roughness": 0.4, "clearcoat": 0.6 },
+      "bone":     { "color": "#e2d3b0" },
+      "fat":      { "color": "#d6a460", "roughness": 0.35, "cavity": 0.18 },
+      "skin":     { "color": "#d2a690", "colorDark": "#6b4a3a", "clearcoat": 0.2 }
+    } }
+  },
   "_rules": "Structure name -> tissue. First matching rule wins (case-insensitive). 'overrides' (exact name) beat rules. Bone sub-meshes named Cartilage and muscle sub-meshes named Tendon are set automatically.",
   "overrides": { "Articular disc of distal radio-ulnar joint": "cartilage" },
   "rules": [

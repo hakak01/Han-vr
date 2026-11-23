@@ -1,29 +1,27 @@
 # PROGRESS (updated 2026-11-23)
 
 ## Done
-- Phase A: tools/build_assets.py → assets/hand.glb (2.8 MB) + manifest.json; 294 structures, 334,641 tris; 30/30 bones BodyParts3D.
-- Phase B: WebXR viewer (index.html + js/). Desktop load 2.4 s, 341 draw calls. Passed Quest 3 emulator test.
-- Phase C: gaps.glb (0.68 MB, 75 structures, approx:true) + visual-check fixes (fat holes, sagittal bands, Guyon roof, LRL/SRL, RMB, thumb oblique pulley).
-- Realistic view: js/tissues.js (MeshPhysicalMaterial per tissue, clearcoat, triplanar KTX2 detail, HDRI, overhead OT spotlight), js/fibres.js (fibre frame follows each mesh's centreline), assets/tissues.json (all values + name→tissue rules). Menu Tools → View: Present / Realistic; key V on desktop. Headless test: no errors, 413 draw calls (unchanged), 23–32 shader programs.
+- Phase A: assets/hand.glb (2.7 MB) + manifest.json; 294 structures, 334,641 tris; 30/30 bones BodyParts3D.
+- Phase B: WebXR viewer (index.html + js/). Desktop load 2.4 s. Passed Quest 3 emulator test.
+- Phase C: gaps.glb (0.66 MB, 75 structures, approx:true) + visual-check fixes.
+- Realistic view: js/tissues.js (MeshPhysicalMaterial per tissue, clearcoat, triplanar KTX2 detail, HDRI, OT spotlight), js/fibres.js, assets/tissues.json.
+- This session: HDRI installed (assets/env/hdri_1k.hdr, 1.6 MB, loads, no warning). New Cadaver palette from 12 user photos (embalmed, latex-injected). Menu View: Present / Realistic / Cadaver; key V cycles all three. Headless test: no errors, 413 draw calls in all 3 views.
 
 ## Decisions
-- 12 tissue types: muscle, tendon, ligament, nerve, artery, vein, bone, cartilage, fat, skin + nail, sheath. Mapping: glTF slot (Cartilage/Tendon/Nail) → exact-name overrides → name regex rules → layer default. Attachments keep present look.
-- Detail maps: 9 × 1024² KTX2 UASTC+Zstd, RDO 2.0, mipmaps, linear (RG normal, B cavity) = 7.7 MB in assets/tex/. RMS normal tilt 4° (cartilage) – 18° (muscle, fat). Tile mm: tendon 6, skin 6, ligament 8, nerve 8, vessel 10, bone 10, muscle 12, fat 20, cartilage 20.
-- Fibre frame: centreline bins every 4 mm (2–40 bins) along the PCA axis, smoothed, parallel-transported; checked: stripes run along FDP (cross-gradient 4.2 vs 1.9).
-- Realistic loads after the main model (present view first), then switches (startView "realistic"). Extra download 7.7 MB textures (+~1.5 MB HDRI).
-- OT light: SpotLight 0.9 m above model, 0.25 m toward viewer, 28°, penumbra 0.7, 2.6 cd, #fff1e0, no shadows. Fill: hemi 0.2, dir 0.35. No SSS, no sheen, no transmission.
+- Palettes: tissues.json "palettes".cadaver overrides only colour/roughness/clearcoat/bump/cavity of "tissues" (living stays default). Same materials, no new shaders. startView may be present/realistic/cadaver.
+- Photo medians: muscle #966350, tendon #f0e2d0, ligament #e8d8cc, nerve #c89c7c (range bd997d–d49d5b), latex artery #be6258, vein #b07f80 (1 photo), skin #cc9e86, fat #d8a070.
+- Cadaver albedo after 2 render-vs-photo rounds: muscle #8a5a4a, tendon #f4e8d8, ligament #e2d4c2, nerve #f0c49c, artery #d86a5e (bump 0.4), vein #a87c84, bone #e2d3b0, fat #d6a460, skin #d2a690. Rendered within ~3% (muscle, tendon, ligament, skin, bone, artery); nerve ~8% and vein ~12% darker than photo.
+- Photos are copyrighted atlas images: used only to measure colour, not stored in the repo.
 
 ## Known problems
-- HDRI not yet in repo (Poly Haven blocked here). Until assets/env/hdri_1k.hdr exists, realistic view uses the built-in room light (console warning).
-- Not tested on a real Quest 3: clearcoat + 3 texture reads per pixel may cost fps; check fps in Tools tab.
-- Fibre direction wrong where a structure folds back on itself (U-shape) or for flat sheets whose fibres are not along the longest side (e.g. pulleys: annular fibres).
-- From Phase C: volar plate/tendon overlap, thin source median nerve, fat thin in the hand, cut faces flat colour.
+- cdn.jsdelivr.net blocked in this cloud session: headless test serves three@0.170.0 from a local npm copy (Playwright route). App still uses the CDN.
+- Fat hidden by default, so fat colour not render-checked. Vein colour from 1 photo only.
+- Not tested on a real Quest 3 (clearcoat + 3 texture reads per pixel). Fibre direction wrong on U-shaped structures and pulleys (annular fibres).
+- From Phase C: volar plate/tendon overlap, thin median nerve, fat thin in the hand, cut faces flat colour.
 
 ## Next step
-- User uploads HDRI (dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/studio_small_09_1k.hdr) to data/upload/ → copy to assets/env/hdri_1k.hdr. Optional: 3–5 de-identified intra-op photos to tune colours/gloss; Quest 3 fps in realistic view.
-- Then Phase D: headset test, numbered corrections.
+- Phase D: Quest 3 headset test (fps in Tools tab in all 3 views), user gives numbered corrections. Optional: living intra-op photos to check the Realistic (living) palette the same way.
 
 ## Key files
-- js/tissues.js, fibres.js, anatomy.js (setView), menu.js (View buttons), main.js · assets/tissues.json, assets/tex/*.ktx2
-- tools/make_tissue_tex.py, tools/encode_ktx2.mjs (needs `npm install ktx2-encoder` in data/raw/enc)
-- tools/build_gaps.py etc. · js/looks.js (present view) · assets/look.json
+- js/tissues.js (applyPalette, setView), menu.js (View row), main.js (startView) · assets/tissues.json (tissues, palettes), assets/env/hdri_1k.hdr, assets/tex/*.ktx2
+- tools/make_tissue_tex.py, tools/encode_ktx2.mjs · js/looks.js (present view) · assets/look.json

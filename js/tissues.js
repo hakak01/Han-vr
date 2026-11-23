@@ -116,7 +116,7 @@ export class Realism {
         clearcoat: T.clearcoat, clearcoatRoughness: T.clearcoatRoughness, ior: 1.4, envMapIntensity: cfg.envIntensity });
       base[k].name = 'tissue:' + k;
     }
-    const counts = {};
+    const counts = {}; this.mats = [];
     for (const s of A.structs) for (const m of s.meshes) {
       const pm = m.userData.mats.present, key = tissueOf(cfg, s.name, s.layer, m.userData.gltfMat, s.kind);
       if (!key || !base[key]) { m.userData.mats.real = pm; continue; }
@@ -134,25 +134,41 @@ export class Realism {
         uCut: { value: new THREE.Color(T.color).multiplyScalar(0.8) } } };
       mat.onBeforeCompile = (sh) => patch(sh, mat);
       mat.customProgramCacheKey = () => 'tissue' + (T.fibre ? 'F' : 'I');
-      m.userData.mats.real = mat; counts[key] = (counts[key] || 0) + 1;
+      m.userData.mats.real = mat; this.mats.push(mat); counts[key] = (counts[key] || 0) + 1;
     }
     console.log('realistic materials per tissue:', counts);
     A.skinReal = cfg.tissues.skin;
   }
 
+  // Palette = tissues.json "tissues" + the overrides in "palettes"[name].tissues (living = no overrides).
+  tissue(key) { return { ...this.cfg.tissues[key], ...(this.cfg.palettes?.[this.palette]?.tissues?.[key] || {}) }; }
+  applyPalette(name) {
+    this.palette = name;
+    for (const mat of this.mats) {
+      const T = this.tissue(mat.userData.key), u = mat.userData.u;
+      mat.color.set(T.color); mat.roughness = T.roughness;
+      mat.clearcoat = T.clearcoat; mat.clearcoatRoughness = T.clearcoatRoughness;
+      u.uBump.value = T.bump; u.uCav.value = T.cavity; u.uRVar.value = T.roughVar;
+      u.uCut.value.set(T.color).multiplyScalar(0.8);
+    }
+    this.app.anatomy.skinReal = this.tissue('skin');
+  }
+
+  // 'present' | 'realistic' (living palette) | 'cadaver' (realistic view, cadaver palette)
   async setView(v) {
-    if (v === 'realistic' && !this.ready) { await this.load(); if (!this.ready) return; }
+    if (v !== 'present' && !this.ready) { await this.load(); if (!this.ready) return; }
     this.view = v;
-    const real = v === 'realistic', { scene, lights } = this.app, cfg = this.cfg;
+    const real = v !== 'present', { scene, lights } = this.app, cfg = this.cfg;
+    if (real) this.applyPalette(v === 'cadaver' ? 'cadaver' : 'living');
     scene.environment = real ? this.env : this.present.env;
     scene.environmentRotation.set(0, real ? THREE.MathUtils.degToRad(cfg.hdriRotation || 0) : 0, 0);
     lights.hemi.intensity = real ? cfg.fillLights.hemisphere : this.present.hemi;
     lights.sun.intensity = real ? cfg.fillLights.directional : this.present.sun;
     if (this.ot) this.ot.intensity = real ? cfg.otLight.intensity : 0;
-    this.app.anatomy.setView(v);
+    this.app.anatomy.setView(real ? 'realistic' : 'present');
     this.app.menus.refresh();
   }
-  toggle() { return this.setView(this.view === 'realistic' ? 'present' : 'realistic'); }
+  toggle() { return this.setView({ present: 'realistic', realistic: 'cadaver' }[this.view] || 'present'); }
 
   // Keep the OT light above the model (world space), slightly towards the viewer.
   update() {

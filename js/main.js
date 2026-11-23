@@ -58,7 +58,7 @@ async function load() {
   document.getElementById('loading').style.display = 'none';
   app.realism = new Realism(app);   // realistic view loads in the background, then switches if startView says so
   const cfg = await fetch('assets/tissues.json', { cache: 'no-cache' }).then((r) => r.json()).catch(() => ({}));
-  if (cfg.startView === 'realistic') app.realism.setView('realistic');
+  if (cfg.startView && cfg.startView !== 'present') app.realism.setView(cfg.startView);
 }
 
 function resetView() {
