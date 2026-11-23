@@ -98,7 +98,7 @@ export class Anatomy {
   showAll() {
     this.isolated = null;
     for (const s of this.structs) { s.hidden = false; s.ghost = false; }
-    for (const k in this.layers) if (k !== 'attachment') { this.layers[k].on = true; if (this.layers[k].opacity < 0.05) this.layers[k].opacity = 1; }
+    for (const k in this.layers) if (k !== 'attachment' && k !== 'fat') { this.layers[k].on = true; if (this.layers[k].opacity < 0.05) this.layers[k].opacity = 1; }
     this.apply();
   }
   search(q) {

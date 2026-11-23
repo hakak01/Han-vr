@@ -8,7 +8,7 @@ import { Anatomy } from './anatomy.js';
 import { Menus } from './menu.js';
 import { XR } from './xr.js';
 
-const GLB_SIZE = 2.9e6;   // used for the loading bar if the server gives no size
+const GLB_SIZE = 2.9e6, GAPS_SIZE = 0.7e6;   // used for the loading bar if the server gives no size
 const app = { fps: 0 };
 window.app = app;
 
@@ -26,6 +26,7 @@ scene.add(new THREE.HemisphereLight(0xffffff, 0x445566, 0.6));
 const sun = new THREE.DirectionalLight(0xffffff, 1.4); sun.position.set(0.5, 1, 1.2); scene.add(sun);
 const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.01, 50);
 const controls = new OrbitControls(camera, renderer.domElement);
+app.camera = camera; app.controls = controls;
 controls.enableDamping = true; controls.minDistance = 0.03; controls.maxDistance = 5;
 const root = new THREE.Group(); scene.add(root); app.root = root;
 
@@ -33,15 +34,19 @@ const fill = document.getElementById('fill'), loadText = document.getElementById
 const fail = (e) => { loadText.textContent = 'Loading failed: ' + e; console.error(e); };
 
 async function load() {
-  const [look, manifest] = await Promise.all(['assets/look.json', 'assets/manifest.json']
-    .map((u) => fetch(u, { cache: 'no-cache' }).then((r) => r.json())));
+  const [look, manifest, gapsMan] = await Promise.all(['assets/look.json', 'assets/manifest.json', 'assets/gaps.json']
+    .map((u) => fetch(u, { cache: 'no-cache' }).then((r) => r.ok ? r.json() : [])));
   app.bg = new THREE.Color(look.background); scene.background = app.bg;
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-  const gltf = await loader.loadAsync('assets/hand.glb', (e) => {
-    fill.style.width = Math.min(100, 100 * e.loaded / (e.total || GLB_SIZE)) + '%';
-  });
+  const got = {}, tot = {};
+  const bar = () => { fill.style.width = Math.min(100, 100 * (got.h + got.g || 0) / ((tot.h || GLB_SIZE) + (tot.g || GAPS_SIZE))) + '%'; };
+  const prog = (k) => (e) => { got[k] = e.loaded; tot[k] = e.total; bar(); };
+  got.h = got.g = 0;
+  const [gltf, gaps] = await Promise.all([loader.loadAsync('assets/hand.glb', prog('h')),
+    loader.loadAsync('assets/gaps.glb', prog('g')).catch((e) => { console.warn('gaps.glb not loaded', e); return null; })]);
+  if (gaps) for (const n of [...gaps.scene.children]) gltf.scene.add(n);   // approximate (Phase C) structures
   loadText.textContent = 'Preparing…';
-  const A = new Anatomy(root, gltf.scene, manifest, look); app.anatomy = A;
+  const A = new Anatomy(root, gltf.scene, manifest.concat(gapsMan || []), look); app.anatomy = A;
   app.menus = new Menus(app);
   A.onChange = () => app.menus && app.menus.buildInfo();
   app.menus.menu.attachDom('menuCanvas'); app.menus.info.attachDom('infoCanvas');

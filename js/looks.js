@@ -1,7 +1,7 @@
 // Procedural tissue materials (no textures). Colours/roughness come from assets/look.json.
 import * as THREE from 'three';
 
-const PATTERNS = { none: 0, porous: 1, fibre: 2, fascicle: 3, mottle: 4 };
+const PATTERNS = { none: 0, porous: 1, fibre: 2, fascicle: 3, mottle: 4, lobule: 5 };
 
 const NOISE = /* glsl */`
 uniform vec3 uAxis; uniform float uScale; uniform float uAlong; uniform float uStrength; uniform vec3 uCut;
@@ -29,6 +29,14 @@ float patN = 0.5;
 #elif PATTERN == 4
   { vec3 p = vNPos * uScale; patN = vnoise(p) * 0.5 + vnoise(p * 3.1) * 0.5;
     diffuseColor.rgb *= 1.0 + uStrength * (patN * 2.0 - 1.0); }
+#elif PATTERN == 5
+  { vec3 p = vNPos * uScale, i = floor(p), f = fract(p); float d1 = 8.0, d2 = 8.0;   // fat lobules (cells)
+    for (int z = -1; z <= 1; z++) for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++) {
+      vec3 g = vec3(x, y, z), o = vec3(hsh(i + g), hsh(i + g + 7.1), hsh(i + g + 13.7));
+      float d = length(g + o - f); if (d < d1) { d2 = d1; d1 = d; } else if (d < d2) d2 = d; }
+    float septum = 1.0 - smoothstep(0.03, 0.12, d2 - d1);
+    patN = 1.0 - d1 * 0.6;
+    diffuseColor.rgb *= (1.0 - uStrength * septum) * (0.9 + 0.2 * patN); }
 #endif
 `;
 
@@ -57,7 +65,7 @@ export function lookKey(layer, matName, kind, structName) {
   if (m === 'Tendon') return 'tendon';
   if (layer === 'skin') return (m === 'Nail' || /Nail/.test(structName)) ? 'nail' : 'skin';
   return { bone: 'bone', muscle: 'muscle', ligament_capsule: 'ligament', fascia_retinacula: 'fascia',
-    tendon_sheath: 'sheath', nerve: 'nerve', artery: 'artery', vein: 'vein' }[layer] || 'ligament';
+    tendon_sheath: 'sheath', nerve: 'nerve', artery: 'artery', vein: 'vein', fat: 'fat' }[layer] || 'ligament';
 }
 
 // Main direction of a mesh (for lengthwise fibres), in model space.

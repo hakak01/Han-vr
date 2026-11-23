@@ -1,0 +1,527 @@
+[
+ {
+  "name": "Volar plate of metacarpophalangeal joint of index finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (MCP palmar plate)",
+  "approx": true,
+  "triangles": 860
+ },
+ {
+  "name": "A1 pulley of index finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A2 pulley of index finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A3 pulley of index finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A4 pulley of index finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A5 pulley of index finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "C1 cruciate pulley of index finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "C2 cruciate pulley of index finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "C3 cruciate pulley of index finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "Sagittal bands of index finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1676
+ },
+ {
+  "name": "Central slip of index finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "Lateral bands of index finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1992
+ },
+ {
+  "name": "Terminal extensor tendon of index finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 572
+ },
+ {
+  "name": "Triangular ligament of index finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 556
+ },
+ {
+  "name": "Transverse retinacular ligaments of index finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1192
+ },
+ {
+  "name": "Oblique retinacular ligaments of index finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1912
+ },
+ {
+  "name": "Volar plate of metacarpophalangeal joint of middle finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (MCP palmar plate)",
+  "approx": true,
+  "triangles": 860
+ },
+ {
+  "name": "A1 pulley of middle finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A2 pulley of middle finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A3 pulley of middle finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A4 pulley of middle finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A5 pulley of middle finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "C1 cruciate pulley of middle finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "C2 cruciate pulley of middle finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "C3 cruciate pulley of middle finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "Sagittal bands of middle finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1676
+ },
+ {
+  "name": "Central slip of middle finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "Lateral bands of middle finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1992
+ },
+ {
+  "name": "Terminal extensor tendon of middle finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 572
+ },
+ {
+  "name": "Triangular ligament of middle finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 556
+ },
+ {
+  "name": "Transverse retinacular ligaments of middle finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1192
+ },
+ {
+  "name": "Oblique retinacular ligaments of middle finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1912
+ },
+ {
+  "name": "Volar plate of metacarpophalangeal joint of ring finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (MCP palmar plate)",
+  "approx": true,
+  "triangles": 860
+ },
+ {
+  "name": "A1 pulley of ring finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A2 pulley of ring finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A3 pulley of ring finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A4 pulley of ring finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A5 pulley of ring finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "C1 cruciate pulley of ring finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "C2 cruciate pulley of ring finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "C3 cruciate pulley of ring finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "Sagittal bands of ring finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1676
+ },
+ {
+  "name": "Central slip of ring finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "Lateral bands of ring finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1992
+ },
+ {
+  "name": "Terminal extensor tendon of ring finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 572
+ },
+ {
+  "name": "Triangular ligament of ring finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 556
+ },
+ {
+  "name": "Transverse retinacular ligaments of ring finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1192
+ },
+ {
+  "name": "Oblique retinacular ligaments of ring finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1912
+ },
+ {
+  "name": "Volar plate of metacarpophalangeal joint of little finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (MCP palmar plate)",
+  "approx": true,
+  "triangles": 860
+ },
+ {
+  "name": "A1 pulley of little finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A2 pulley of little finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A3 pulley of little finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A4 pulley of little finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "A5 pulley of little finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "C1 cruciate pulley of little finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "C2 cruciate pulley of little finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "C3 cruciate pulley of little finger",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 952
+ },
+ {
+  "name": "Sagittal bands of little finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1676
+ },
+ {
+  "name": "Central slip of little finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "Lateral bands of little finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1992
+ },
+ {
+  "name": "Terminal extensor tendon of little finger",
+  "layer": "muscle",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 572
+ },
+ {
+  "name": "Triangular ligament of little finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 556
+ },
+ {
+  "name": "Transverse retinacular ligaments of little finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1192
+ },
+ {
+  "name": "Oblique retinacular ligaments of little finger",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (extensor mechanism (Green's Operative Hand Surgery))",
+  "approx": true,
+  "triangles": 1912
+ },
+ {
+  "name": "Volar plate of metacarpophalangeal joint of thumb",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (MCP palmar plate)",
+  "approx": true,
+  "triangles": 860
+ },
+ {
+  "name": "A1 pulley of thumb",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "Oblique pulley of thumb",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 948
+ },
+ {
+  "name": "A2 pulley of thumb",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Doyle JR, J Hand Surg Am 1988)",
+  "approx": true,
+  "triangles": 716
+ },
+ {
+  "name": "Long radiolunate ligament",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (Berger RA, Hand Clin 2001)",
+  "approx": true,
+  "triangles": 836
+ },
+ {
+  "name": "Short radiolunate ligament",
+  "layer": "ligament_capsule",
+  "source": "Approximate model, build_gaps.py (Berger RA, Hand Clin 2001)",
+  "approx": true,
+  "triangles": 836
+ },
+ {
+  "name": "Recurrent motor branch of median nerve",
+  "layer": "nerve",
+  "source": "Approximate model, build_gaps.py (Lanz U, J Hand Surg Am 1977)",
+  "approx": true,
+  "triangles": 1764
+ },
+ {
+  "name": "Volar carpal ligament (roof of Guyon's canal)",
+  "layer": "fascia_retinacula",
+  "source": "Approximate model, build_gaps.py (Guyon's canal roof)",
+  "approx": true,
+  "triangles": 1788
+ },
+ {
+  "name": "Subcutaneous fat of hand and fingers",
+  "layer": "fat",
+  "source": "Approximate model, build_gaps.py (filled to the skin-deep fascia gap)",
+  "approx": true,
+  "triangles": 12692
+ },
+ {
+  "name": "Subcutaneous fat of wrist and forearm",
+  "layer": "fat",
+  "source": "Approximate model, build_gaps.py (filled to the skin-deep fascia gap)",
+  "approx": true,
+  "triangles": 4572
+ },
+ {
+  "name": "Subcutaneous fat of elbow and arm",
+  "layer": "fat",
+  "source": "Approximate model, build_gaps.py (filled to the skin-deep fascia gap)",
+  "approx": true,
+  "triangles": 4388
+ }
+]

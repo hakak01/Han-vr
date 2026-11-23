@@ -40,3 +40,7 @@ Names in quotes are the structure names in assets/manifest.json.
 - Subcutaneous fat — **missing**.
 
 **Summary: 3 missing, 8 partial** (extensor mechanism, recurrent motor branch, subcutaneous fat missing).
+
+## Phase C (tools/build_gaps.py → assets/gaps.glb, all flagged "APPROXIMATE – check")
+- Built: A1–A5 + C1–C3 pulleys (4 fingers), thumb A1 / oblique / A2 (Doyle 1988); MCP volar plates (5; IP plates already present); extensor mechanism per finger (sagittal bands, central slip, lateral bands, terminal tendon, triangular lig., transverse + oblique retinacular ligs.); long + short radiolunate ligs. (Berger 2001); recurrent motor branch of median nerve, extraligamentous (Lanz 1977); volar carpal ligament (roof of Guyon's canal); subcutaneous fat (3 regions, new "Subcutaneous fat" layer, off at start).
+- Not built (not in Phase C list): palmaris brevis, separate extensor-compartment septa, separate ECU subsheath. Camper's chiasm still to check in the headset.

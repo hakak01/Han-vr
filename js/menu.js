@@ -1,7 +1,7 @@
 // Wrist menu (Layers / Search / Tools) and the selection info panel.
 import { Panel } from './panel.js';
 
-const LAYER_LABEL = { skin: 'Skin', fascia_retinacula: 'Fascia & retinacula', muscle: 'Muscles & tendons',
+const LAYER_LABEL = { skin: 'Skin', fat: 'Subcutaneous fat', fascia_retinacula: 'Fascia & retinacula', muscle: 'Muscles & tendons',
   tendon_sheath: 'Tendon sheaths', ligament_capsule: 'Ligaments & capsules', nerve: 'Nerves',
   artery: 'Arteries', vein: 'Veins', bone: 'Bones', attachment: 'Origins/insertions' };
 const KEYS = ['ABCDEFGHI', 'JKLMNOPQR', 'STUVWXYZ-'];
@@ -31,12 +31,12 @@ export class Menus {
     y += 26;
     for (const k of Object.keys(LAYER_LABEL)) {
       const L = A.layers[k]; if (!L) continue;
-      p.button(15, y, 265, 50, (L.on ? '✓ ' : '   ') + (L.label || LAYER_LABEL[k]),
+      p.button(15, y, 265, 46, (L.on ? '✓ ' : '   ') + (L.label || LAYER_LABEL[k]),
         () => { A.setLayer(k, !L.on); this.refresh(); }, { active: L.on, size: 22 });
-      p.text(625, y + 25, Math.round(L.opacity * 100) + '%', { size: 20, align: 'right' });
+      p.text(625, y + 23, Math.round(L.opacity * 100) + '%', { size: 20, align: 'right' });
       const pct = p.items[p.items.length - 1];
-      p.slider(300, y, 255, 50, L.opacity, (v) => { A.setLayerOpacity(k, v); pct.label = Math.round(v * 100) + '%'; });
-      y += 58;
+      p.slider(300, y, 255, 46, L.opacity, (v) => { A.setLayerOpacity(k, v); pct.label = Math.round(v * 100) + '%'; });
+      y += 52;
     }
     p.button(15, y + 10, 300, 56, 'Show all', () => { A.showAll(); this.refresh(); });
     p.button(325, y + 10, 300, 56, 'Reset view', () => this.app.resetView());
@@ -101,7 +101,7 @@ export class Menus {
       p.text(20, 36, s.name, { size: 30, bold: true, wrap: 560, maxLines: 2 });
       p.button(575, 12, 50, 50, '✕', () => { A.select(null); this.refresh(); });
       p.text(20, 120, 'Layer: ' + (LAYER_LABEL[s.layer] || s.layer) + (s.kind ? ' · ' + s.kind : ''), { size: 21, color: '#bcd' });
-      p.text(20, 150, 'Source: ' + (s.source || ''), { size: 18, color: '#99a' });
+      p.text(20, 150, 'Source: ' + (s.source || ''), { size: 18, color: '#99a', wrap: 600, maxLines: 1 });
       if (s.approx) p.text(20, 182, 'APPROXIMATE – check', { size: 24, bold: true, color: '#ffb02e' });
       const b = [['Hide', () => A.hide(s)], ['Ghost', () => A.toggleGhost(s)], ['Isolate', () => A.isolate(s)],
         ['Show all', () => A.showAll()], ['Focus', () => this.app.focus(s)]];

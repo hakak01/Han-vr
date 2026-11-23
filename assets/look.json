@@ -15,6 +15,7 @@
     "nerve":     { "color": "#efe1a6", "roughness": 0.5,  "opacity": 1.0,  "pattern": "fascicle", "patternScale": 900,  "patternAlong": 25, "patternStrength": 0.18 },
     "artery":    { "color": "#b3221d", "roughness": 0.3,  "opacity": 0.85, "pattern": "none" },
     "vein":      { "color": "#3d2b6e", "roughness": 0.3,  "opacity": 0.85, "pattern": "none" },
+    "fat":       { "color": "#e8c35a", "roughness": 0.3,  "opacity": 1.0,  "pattern": "lobule",   "patternScale": 450,  "patternStrength": 0.35 },
     "origin":    { "color": "#e02424", "roughness": 0.5,  "opacity": 1.0,  "pattern": "none" },
     "insertion": { "color": "#2449e0", "roughness": 0.5,  "opacity": 1.0,  "pattern": "none" }
   },
@@ -24,6 +25,7 @@
     "muscle":            { "label": "Muscles & tendons",    "on": true,  "opacity": 1.0 },
     "tendon_sheath":     { "label": "Tendon sheaths",       "on": true,  "opacity": 1.0 },
     "ligament_capsule":  { "label": "Ligaments & capsules", "on": true,  "opacity": 1.0 },
+    "fat":               { "label": "Subcutaneous fat",     "on": false, "opacity": 1.0 },
     "nerve":             { "label": "Nerves",               "on": true,  "opacity": 1.0 },
     "artery":            { "label": "Arteries",             "on": true,  "opacity": 1.0 },
     "vein":              { "label": "Veins",                "on": true,  "opacity": 1.0 },

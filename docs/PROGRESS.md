@@ -1,26 +1,28 @@
 # PROGRESS (updated 2026-11-23)
 
 ## Done
-- Phase A: tools/build_assets.py → assets/hand.glb (2.8 MB, meshopt) + manifest.json; 294 structures, 334,641 triangles; 30/30 bones swapped to BodyParts3D (mean 0.07–0.33 mm, max ≤2.5 mm). Rebuild ~25 s.
-- Phase B: WebXR viewer (index.html + js/). Desktop load 2.4 s, 341 draw calls, 19 shader programs. Passed Meta iwer Quest 3 emulator test (VR, ray select, wrist menu, grab, 2-hand zoom, exit).
+- Phase A: tools/build_assets.py → assets/hand.glb (2.8 MB) + manifest.json; 294 structures, 334,641 tris; 30/30 bones BodyParts3D.
+- Phase B: WebXR viewer (index.html + js/). Desktop load 2.4 s, 341 draw calls. Passed Quest 3 emulator test.
+- Phase C: tools/build_gaps.py (+ gapgeom, gaps_finger, gaps_wrist, gaps_fat, glbio) → assets/gaps.glb (0.65 MB) + gaps.json; 75 structures, 93,764 tris, approx:true, build 8 s. Viewer loads both (369 structures, no console errors).
 
 ## Decisions
-- Selection: right side, Z-Anatomy upper-limb collections, bottom below mid-humerus z=1.246 m; whole humerus kept.
-- Units metres, Y up, origin = capitate centroid (Z-Anatomy world -0.2647, -0.0182, 0.8427); viewer re-centres on bbox.
-- Curves: resolution_u ≤3, bevel_resolution ≤2. Repair: merge 0.01 mm, smooth <300 verts, clamp 0.3 mm.
-- Names: ".r" removed; footprints "X (origin)" / "X (insertion 2)", manifest kind field.
-- three.js 0.170.0 (jsDelivr). VR placement 55 cm ahead, 30 cm below eyes, palm to user. Zoom 0.5–20×; ghost = 25%; focus enlarges to ~12 cm, 35 cm ahead.
-- Look values in assets/look.json; attachments off at start; sheaths 35%, vessels 85% opacity.
+- Units m, Y up, origin capitate centroid. three.js 0.170.0. Look values in assets/look.json (new "fat" look + layer, off at start, kept off by "Show all").
+- Finger frame: centreline through joint centres; s = mm from MCP; palmar = towards own flexor tendons. Middle finger MCP–PIP 44.7, PIP–DIP 29.7 mm.
+- Pulleys (Doyle): A1 −4.5…+3.5 mm about MCP, A2 5→22 mm (17, ≤60% PP), A3 ±1.5 at PIP, A4 7 mm centred mid-MP, A5 ±1.5 at DIP; scaled by PP length / middle PP. Thickness 0.7, C 1.4 mm wide ×0.4. Thumb A1 7.5, oblique 7 mm wide (proximal-ulnar → distal-radial), A2 9 mm.
+- MCP volar plates: −8 to +3 mm, 2.0 mm thick distally → 0.8 mm. Extensor: lateral bands 2.2 mm, 80°→4° from dorsal midline; terminal tendon to DP base +2.5 mm.
+- Radiolunate: LRL 4 mm, SRL 5 mm wide, 1.3 mm, lying on bone. RMB 1.3→1.0 mm diameter, 3 twigs (APB, FPB, OP). Guyon roof 0.8 mm, 19 mm long.
+- Fat = gap from skin to deep layers − 0.5 mm (0.3–10 mm); hand median 0.6–0.9 mm, arm 3–7.5 mm.
 
 ## Known problems
-- Not yet tested on a real Quest 3 (fps, passthrough, wrist-menu comfort).
-- GitHub Pages must be switched on by user (Settings → Pages → main, root) → hakak01.github.io/Han-vr/.
-- Fibre direction = one main axis per mesh (poor on arches/branches). Cut faces = flat colour, no true caps.
-- Gaps (docs/GAPS.md): 3 missing (extensor mechanism, recurrent motor branch, subcutaneous fat), 8 partial.
+- Not yet tested on a real Quest 3. GitHub Pages must be on (Settings → Pages → main, root).
+- Source flexor tendons touch MCP heads → MCP volar plates overlap tendons 17–37%; little-finger A1 overlaps lumbrical/ADM 32%. 0% of new parts inside bone (tools/check_gaps.py).
+- Source carpus sits ulnar to radius → LRL/SRL run oblique and lie side by side. Z-Anatomy FR already spans over the ulnar nerve, so Guyon roof lies under it.
+- Fat thin in the hand (model gap is small). Draw calls ~413 with defaults (+72).
+- Fibre direction = one axis per mesh. Cut faces flat colour.
 
 ## Next step
-- Phase C: tools/build_gaps.py → assets/gaps.glb (approx:true); then Phase D headset corrections.
+- Phase D: user tests in headset, sends numbered corrections; fix only those.
 
 ## Key files
-- tools/build_assets.py, zsel.py, boneswap.py · js/main.js, anatomy.js, looks.js, panel.js, menu.js, xr.js
-- assets/hand.glb, manifest.json, look.json · docs/SPEC.md, GAPS.md · data/raw/build_log.txt (local only)
+- tools/build_gaps.py, gaps_finger.py, gaps_wrist.py, gaps_fat.py, gapgeom.py, glbio.py, check_gaps.py
+- js/main.js (loads gaps), looks.js (lobule shader), menu.js · assets/gaps.glb, gaps.json, look.json · docs/GAPS.md
