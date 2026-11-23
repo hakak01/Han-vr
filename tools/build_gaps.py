@@ -27,7 +27,7 @@ def main():
 
     def get(name, mat=None):
         ps = [(v, f) for v, f, m in D[name] if mat is None or m == mat]
-        return G.merge(ps)
+        return G.merge(ps) if ps else (np.zeros((0, 3)), np.zeros((0, 3), int))
 
     def pts(names, mat=None, spacing=0.6 * MM):
         return np.vstack([G.sample_surface(*get(n, mat), spacing=spacing) for n in names])
@@ -45,7 +45,7 @@ def main():
     deep = [n for n in D if layer.get(n) in DEEP and not kind.get(n)]
     deep_pts = np.vstack([pts(deep, spacing=1.0 * MM)] +
                          [G.sample_surface(*it['mesh'], spacing=1.0 * MM) for it in items])
-    fi, stats = gaps_fat.build(get, [n for n in D if layer.get(n) == 'skin'], deep_pts)
+    fi, stats = gaps_fat.build(get, lambda n: {m for _, _, m in D[n]}, [n for n in D if layer.get(n) == 'skin'], deep_pts)
     items += fi
     for k, (med, mx) in stats.items():
         log('  fat under %-36s median %.1f mm, max %.1f mm' % (k, med, mx))

@@ -63,8 +63,9 @@ def sheet(W, Agrid, Rgrid, H, thick):
 def ribbon(W, h, A, B, width, thick, clear=0.3 * MM, nu=30, nv=7, ceil=None):
     d = B[:2] - A[:2]; L = np.linalg.norm(d); t = d / L; n = np.array([-t[1], t[0]])
     u = np.linspace(0, 1, nu)[:, None]; v = np.linspace(-0.5, 0.5, nv)[None]
-    Ag = A[0] + u * d[0] + v * width * n[0]
-    Rg = A[1] + u * d[1] + v * width * n[1]
+    fan = 0.75 + 0.45 * np.abs(2 * u - 1) ** 2          # fibres fan out at both attachments
+    Ag = A[0] + u * d[0] + v * width * fan * n[0]
+    Rg = A[1] + u * d[1] + v * width * fan * n[1]
     H = h(Ag, Rg)
     H = upper(fill_rows(H), 2) + clear
     th = thick * (1 - 0.5 * (2 * np.abs(v)) ** 4) * (1 - 0.3 * (2 * np.abs(u - 0.5)) ** 6)
@@ -98,8 +99,8 @@ def build(get, pts, c):
             'Radial head of flexor digitorum superficialis', 'Flexor pollicis longus', 'Flexor carpi radialis']
     ceil = heightfield(WF.loc(pts(TEND, 'Tendon')), 1.5 * MM, low=True)
     rmin = np.percentile(rad[rad[:, 0] > rad[:, 0].max() - 25 * MM, 1], 2)   # ulnar edge of distal radius
-    o_l = best(rad, rmin + 8 * MM, rmin + 11 * MM, rim=4 * MM); i_l = best(lun, r_l + 3 * MM, r_l + 6.5 * MM)
-    o_s = best(rad, rmin + 1 * MM, rmin + 4.5 * MM, rim=4 * MM); i_s = best(lun, r_l - 2 * MM, r_l + 1 * MM, lun[:, 0] < np.median(lun[:, 0]))
+    o_l = best(rad, rmin + 8 * MM, rmin + 11 * MM, rim=4 * MM); i_l = best(lun, r_l + 4.5 * MM, r_l + 7.5 * MM)
+    o_s = best(rad, rmin + 1 * MM, rmin + 4.5 * MM, rim=4 * MM); i_s = best(lun, r_l - 4.5 * MM, r_l - 1 * MM, lun[:, 0] < np.median(lun[:, 0]))
     ref = 'Berger RA, Hand Clin 2001'
     add('Long radiolunate ligament', 'ligament_capsule', 'Ligament',
         ribbon(WF, h, o_l - [2 * MM, 0, 0], i_l + [1 * MM, 0, 0], 4 * MM, 1.3 * MM, 0.2 * MM, ceil=ceil), ref)
@@ -125,12 +126,12 @@ def build(get, pts, c):
         if not np.isnan(hh):
             ctrl[i, 2] = max(ctrl[i, 2], hh + 0.6 * MM)
     path = W.world(G.catmull(ctrl, 14))
-    rmb = [G.tube(path, np.linspace(0.65, 0.5, len(path)) * MM)]
+    rmb = [G.tube(path, np.linspace(0.45, 0.38, len(path)) * MM)]
     Tw = W.world(T)
     for n in then:
         d = G.unit(c(n) - Tw)
         tw = W.world(G.catmull([T, T + W.M @ d * 2.5 * MM, T + W.M @ d * 5 * MM], 6))
-        rmb.append(G.tube(tw, np.linspace(0.4, 0.28, len(tw)) * MM, 8))
+        rmb.append(G.tube(tw, np.linspace(0.3, 0.2, len(tw)) * MM, 8))
     add('Recurrent motor branch of median nerve', 'nerve', 'Nerve', G.merge(rmb), 'Lanz U, J Hand Surg Am 1977')
 
     # --- roof of Guyon's canal (volar carpal ligament)
@@ -146,7 +147,10 @@ def build(get, pts, c):
              'Superficial palmar arch', 'Pisiform bone', 'Hamate bone', 'Pisohamate ligament',
              'Abductor digiti minimi of hand']),
         loc(TEND[:3] + ['Humeral head of flexor carpi ulnaris', 'Ulnar head of flexor carpi ulnaris'], 'Tendon')]), 1.5 * MM)
-    Ag, Rg = np.meshgrid(np.linspace(a0, a1, 28), np.linspace(r0, r1, 16), indexing='ij')
+    uu = np.linspace(-1, 1, 28)[:, None]; vv = np.linspace(-1, 1, 16)[None]
+    half = (r1 - r0) / 2 * np.maximum(1 - np.abs(uu) ** 4, 0.25) ** 0.25   # rounded outline
+    Ag = a0 + (uu + 1) / 2 * (a1 - a0) + 0 * vv
+    Rg = (r0 + r1) / 2 + vv * half
     H = upper(fill_rows(hg(Ag, Rg)), 2) + 0.8 * MM
     v = np.linspace(-1, 1, 16)[None]; u = np.linspace(-1, 1, 28)[:, None]
     th = 0.8 * MM * (1 - 0.6 * v ** 6) * (1 - 0.6 * u ** 8)

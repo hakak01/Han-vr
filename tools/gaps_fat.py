@@ -20,16 +20,16 @@ GAP_DEEP = 0.4 * MM          # and stops just short of the deep structures
 TMIN, TMAX = 0.3 * MM, 10 * MM
 
 
-def shell(v, f, deep_tree):
+def shell(v, f, outer, deep_tree):
+    """v, f: inner surface of a skin region (material 'Skin-in'); outer: points of its outer surface.
+    Inwards = away from the outer skin surface."""
     a, b, c = v[f[:, 0]], v[f[:, 1]], v[f[:, 2]]
     fn = np.cross(b - a, c - a); fc = (a + b + c) / 3
-    _, qi = deep_tree.query(fc)
-    inner = np.einsum('ij,ij->i', fn, deep_tree.data[qi] - fc) > 0
-    frac = inner.mean()
-    if 0.25 < frac < 0.75:           # solidified skin: keep the inner surface (normals face inwards)
-        f, sign = f[inner], 1.0
-    else:                            # single sheet
-        sign = 1.0 if frac >= 0.75 else -1.0
+    ot = cKDTree(outer)
+    _, qi = ot.query(fc)
+    out = np.einsum('ij,ij->i', fn, ot.data[qi] - fc) > 0      # source winding is mixed: fix per face
+    f = np.where(out[:, None], f[:, ::-1], f)
+    sign = 1.0                                                  # all normals now point inwards
     used = np.unique(f); remap = -np.ones(len(v), int); remap[used] = np.arange(len(used))
     v, f = v[used], remap[f]
     n = sign * glbio.vertex_normals(v, f)
@@ -62,7 +62,23 @@ def shell(v, f, deep_tree):
     return V, F, t
 
 
-def build(get, skin_names, deep_pts):
+def split_inner(get, mats, rn, tree):
+    """Inner skin surface = material 'Skin-in' plus any face whose normal points to the deep tissues
+    (some regions carry outer-skin materials on part of their inner shell). Returns (V, F), outer points."""
+    ins, outs = [get(rn, 'Skin-in')], []
+    for m in mats:
+        if m == 'Skin-in':
+            continue
+        v, f = get(rn, m)
+        fc = v[f].mean(1); fn = G.unit(np.cross(v[f[:, 1]] - v[f[:, 0]], v[f[:, 2]] - v[f[:, 0]]))
+        _, qi = tree.query(fc)
+        tow = np.einsum('ij,ij->i', fn, G.unit(tree.data[qi] - fc)) > 0.3
+        ins.append((v, f[tow])); outs.append(G.sample_surface(v, f[~tow]))
+    return G.merge(ins), np.vstack(outs)
+
+
+def build(get, mats, skin_names, deep_pts):
+    """mats(name) -> material names of that structure."""
     tree = cKDTree(deep_pts)
     skin = [n for n in skin_names if n not in SKIP]
     groups = dict(GROUPS)
@@ -74,7 +90,8 @@ def build(get, skin_names, deep_pts):
         for rn in regions:
             if rn not in skin:
                 continue
-            V, F, t = shell(*get(rn), tree)
+            inner, outer = split_inner(get, mats(rn), rn, tree)
+            V, F, t = shell(*inner, outer, tree)
             parts.append((V, F)); stats[rn] = (np.median(t) / MM, t.max() / MM)
         if parts:
             out.append(dict(name=name, layer='fat', mat='Fat', mesh=G.merge(parts),

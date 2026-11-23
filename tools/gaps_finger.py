@@ -48,7 +48,7 @@ def build(get, pts):
                             pts(['Flexor pollicis longus'], 'Tendon'), pts(['Tendon sheath of flexor pollicis longus'])]))
     ext = split(np.vstack([pts(EXT, 'Tendon'), pts(['Extensor pollicis longus', 'Extensor pollicis brevis'], 'Tendon')]))
     joint = split(pts(JOINT))
-    intr = split(pts(INTR))
+    intr = split(pts(INTR, 'Tendon'))     # intrinsic tendons only (sagittal bands pass over them)
     bpts = {o: np.vstack([G.sample_surface(b, get_f) for b, get_f in zip(bones[o], bone_faces(get, o))]) for o in keys}
     mc2 = bones['second'][0].mean(0)
     for o in keys:
@@ -76,7 +76,7 @@ def build(get, pts):
         if thumb:
             L = L1 / MM
             add('A1 pulley of thumb', 'fascia_retinacula', 'Ligament', [ann(-4, 3.5, a=28)], DOYLE)
-            obl = R.strip(Ef, lerp(0.25 * L * MM, 0.6 * L * MM), lerp(165 * D2R, 15 * D2R), 7 * MM,
+            obl = R.strip(Ef, lerp(0.32 * L * MM, 0.62 * L * MM), lerp(140 * D2R, 35 * D2R), 7 * MM,
                           offset=0.3 * MM, thick=taper(0.7 * MM), nu=34, nv=7)
             add('Oblique pulley of thumb', 'fascia_retinacula', 'Ligament', [obl], DOYLE)
             add('A2 pulley of thumb', 'fascia_retinacula', 'Ligament', [ann(L - 7.5, L + 1.5)], DOYLE)

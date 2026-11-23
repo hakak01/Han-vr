@@ -508,20 +508,20 @@
   "layer": "fat",
   "source": "Approximate model, build_gaps.py (filled to the skin-deep fascia gap)",
   "approx": true,
-  "triangles": 12692
+  "triangles": 14184
  },
  {
   "name": "Subcutaneous fat of wrist and forearm",
   "layer": "fat",
   "source": "Approximate model, build_gaps.py (filled to the skin-deep fascia gap)",
   "approx": true,
-  "triangles": 4572
+  "triangles": 5684
  },
  {
   "name": "Subcutaneous fat of elbow and arm",
   "layer": "fat",
   "source": "Approximate model, build_gaps.py (filled to the skin-deep fascia gap)",
   "approx": true,
-  "triangles": 4388
+  "triangles": 5684
  }
 ]
