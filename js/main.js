@@ -7,6 +7,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { Anatomy } from './anatomy.js';
 import { Menus } from './menu.js';
 import { XR } from './xr.js';
+import { Realism } from './tissues.js';
 
 const GLB_SIZE = 2.9e6, GAPS_SIZE = 0.7e6;   // used for the loading bar if the server gives no size
 const app = { fps: 0 };
@@ -22,8 +23,9 @@ app.renderer = renderer;
 const scene = new THREE.Scene(); app.scene = scene;
 const pmrem = new THREE.PMREMGenerator(renderer);
 scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-scene.add(new THREE.HemisphereLight(0xffffff, 0x445566, 0.6));
+const hemi = new THREE.HemisphereLight(0xffffff, 0x445566, 0.6); scene.add(hemi);
 const sun = new THREE.DirectionalLight(0xffffff, 1.4); sun.position.set(0.5, 1, 1.2); scene.add(sun);
+app.lights = { hemi, sun };
 const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.01, 50);
 const controls = new OrbitControls(camera, renderer.domElement);
 app.camera = camera; app.controls = controls;
@@ -54,6 +56,9 @@ async function load() {
   resetView();
   renderer.compile(scene, camera);
   document.getElementById('loading').style.display = 'none';
+  app.realism = new Realism(app);   // realistic view loads in the background, then switches if startView says so
+  const cfg = await fetch('assets/tissues.json', { cache: 'no-cache' }).then((r) => r.json()).catch(() => ({}));
+  if (cfg.startView === 'realistic') app.realism.setView('realistic');
 }
 
 function resetView() {
@@ -81,7 +86,11 @@ Object.assign(app, {
 const menuBtn = document.getElementById('menuBtn');
 menuBtn.onclick = () => { const c = document.getElementById('menuCanvas'); c.style.display = c.style.display === 'none' ? '' : 'none'; };
 if (innerWidth < 700) setTimeout(() => menuBtn.onclick(), 0);   // phones start with the menu closed
-addEventListener('keydown', (e) => app.menus && app.menus.key(e));
+addEventListener('keydown', (e) => {
+  if (!app.menus) return;
+  if (e.key === 'v' && app.menus.tab !== 'search') return app.realism && app.realism.toggle();
+  app.menus.key(e);
+});
 
 // click / tap to select (ignore drags)
 const ray = new THREE.Raycaster(); let downAt = null;
@@ -106,6 +115,7 @@ renderer.setAnimationLoop(() => {
     if (app.menus && app.menus.tab === 'tools') app.menus.refresh();
   }
   if (app.xr) app.xr.update(dt);
+  if (app.realism) app.realism.update();
   if (!app.inXR()) controls.update();
   if (app.anatomy) { root.updateMatrixWorld(); app.anatomy.updateClip(); }
   renderer.render(scene, camera);

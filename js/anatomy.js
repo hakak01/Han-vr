@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { lookKey, makeMaterial } from './looks.js';
 
 const GHOST = 0.25;
+const mats = (m) => { const { present, real } = m.userData.mats; return real && real !== present ? [present, real] : [present]; };
 const AXES = { sagittal: new THREE.Vector3(1, 0, 0), axial: new THREE.Vector3(0, 1, 0), coronal: new THREE.Vector3(0, 0, 1) };
 
 export class Anatomy {
@@ -40,7 +41,9 @@ export class Anatomy {
         if (!m.isMesh) return;
         const key = lookKey(e.layer, m.material && m.material.name, s.kind, e.name);
         const nm = new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld);
+        m.userData.gltfMat = m.material && m.material.name;
         m.material = makeMaterial(look, key, m, nm, this.clipPlanes);
+        m.userData.mats = { present: m.material };   // 'real' is added by tissues.js
         m.userData.struct = s;
         s.meshes.push(m);
       });
@@ -65,10 +68,12 @@ export class Anatomy {
       const vis = this.visibleOf(s), f = this.layers[s.layer].opacity * (s.ghost ? GHOST : 1);
       for (const m of s.meshes) {
         m.visible = vis;
-        const mat = m.material, op = mat.userData.baseOpacity * f, tr = op < 0.999;
-        mat.opacity = op;
-        if (mat.transparent !== tr) { mat.transparent = tr; mat.depthWrite = !tr; mat.needsUpdate = true; }
-        mat.emissive.copy(s === this.selected ? this.highlight : new THREE.Color(0)).multiplyScalar(0.35);
+        for (const mat of mats(m)) {
+          const op = mat.userData.baseOpacity * f, tr = op < 0.999;
+          mat.opacity = op;
+          if (mat.transparent !== tr) { mat.transparent = tr; mat.depthWrite = !tr; mat.needsUpdate = true; }
+          mat.emissive.copy(s === this.selected ? this.highlight : new THREE.Color(0)).multiplyScalar(0.35);
+        }
       }
     }
     this.pickables = this.structs.filter((s) => this.visibleOf(s)).flatMap((s) => s.meshes);
@@ -109,8 +114,18 @@ export class Anatomy {
   setSkinTone(t) {
     this.skinTone = t;
     const a = new THREE.Color(this.look.looks.skin.color), b = new THREE.Color(this.look.looks.skin.colorDark);
-    for (const s of this.structs) for (const m of s.meshes)
-      if (m.material.userData.key === 'skin') { m.material.color.lerpColors(a, b, t); m.material.userData.u.uCut.value.copy(m.material.color).multiplyScalar(0.8); }
+    const R = this.skinReal, ra = R && new THREE.Color(R.color), rb = R && new THREE.Color(R.colorDark || R.color);
+    for (const s of this.structs) for (const m of s.meshes) for (const mat of mats(m)) {
+      if (mat.userData.key !== 'skin') continue;
+      if (mat.isMeshPhysicalMaterial) mat.color.lerpColors(ra, rb, t); else mat.color.lerpColors(a, b, t);
+      mat.userData.u.uCut.value.copy(mat.color).multiplyScalar(0.8);
+    }
+  }
+  // 'present' or 'realistic' (realistic materials must already exist, see tissues.js)
+  setView(v) {
+    this.view = v;
+    for (const s of this.structs) for (const m of s.meshes) m.material = (v === 'realistic' && m.userData.mats.real) || m.userData.mats.present;
+    this.setSkinTone(this.skinTone); this.apply();
   }
 
   // world-space centre + size of a structure
@@ -123,8 +138,8 @@ export class Anatomy {
   setClip(mode) {
     const wasOn = this.clip.mode !== 'off', on = mode !== 'off';
     this.clip.mode = mode;
-    if (wasOn !== on) for (const s of this.structs) for (const m of s.meshes) {
-      m.material.side = on ? THREE.DoubleSide : THREE.FrontSide; m.material.needsUpdate = true;
+    if (wasOn !== on) for (const s of this.structs) for (const m of s.meshes) for (const mat of mats(m)) {
+      mat.side = on ? THREE.DoubleSide : THREE.FrontSide; mat.needsUpdate = true;
     }
     this.updateClip();
   }

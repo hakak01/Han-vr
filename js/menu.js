@@ -85,6 +85,10 @@ export class Menus {
     y += 70;
     p.text(20, y + 10, 'Skin tone', { size: 22, bold: true }); y += 30;
     p.slider(15, y, 610, 52, A.skinTone, (v) => A.setSkinTone(v)); y += 70;
+    const R = this.app.realism, real = R && R.view === 'realistic';
+    p.text(20, y + 10, 'View' + (R && R.status ? '  (' + R.status + ')' : ''), { size: 22, bold: true }); y += 30;
+    p.button(15, y, 300, 52, 'Present', () => R && R.setView('present'), { active: !real });
+    p.button(325, y, 300, 52, 'Realistic', () => R && R.setView('realistic'), { active: real }); y += 66;
     p.button(15, y, 300, 56, 'Show all', () => { A.showAll(); this.refresh(); });
     p.button(325, y, 300, 56, 'Reset view', () => this.app.resetView()); y += 66;
     if (this.app.inXR()) p.button(15, y, 610, 60, 'Exit VR / MR', () => this.app.exitXR(), { active: true, color: '#b03030' });
