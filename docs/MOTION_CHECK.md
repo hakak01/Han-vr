@@ -50,31 +50,84 @@ Soft tissue = all non-bone, non-footprint vertices (173168). "New depth" = depth
 | pose | new depth > 1 mm (vertices, worst structure) | skin edge stretch 0.5-99.5 % | flexor off pulley (mm) | result |
 |---|---|---|---|---|
 | neutral | 0 (0.00 %) - | 1.00-1.00 | 0.0  | PASS |
-| full fist | 1794 (1.04 %) Humero-ulnar head of flexor digitorum superficialis 223 (5.9 mm), Subcutaneous fat of hand and fingers 146 (3.0 mm), Palmar interphalangeal ligaments 121 (2.8 mm) | 0.28-2.14 | 2.0 FPL1 in A2 pulley | FAIL |
-| full extension | 132 (0.08 %) Sagittal bands of middle finger 47 (2.2 mm), Extensor digiti minimi 23 (3.9 mm), Flexor digitorum profundus 23 (2.2 mm) | 0.75-1.19 | 0.4 FDS4 in A5 pulley | PASS |
-| wrist flexion 80 | 744 (0.43 %) Humero-ulnar head of flexor digitorum superficialis 113 (4.1 mm), Superficial venous palmar arch 77 (3.7 mm), Tendon sheath of flexor carpi radialis 60 (2.8 mm) | 0.14-2.24 | 0.0 FDS4 in C3 cruciate pulley | FAIL |
-| wrist extension 70 | 512 (0.30 %) Extensor digitorum 194 (4.9 mm), Flexor pollicis longus 60 (4.2 mm), Superficial venous palmar arch 40 (3.4 mm) | 0.20-2.07 | 0.0 FDP2 in C2 cruciate pulley | FAIL |
-| wrist radial 20 | 164 (0.09 %) Abductor pollicis longus 54 (5.0 mm), Deep venous palmar arch 38 (3.6 mm), Flexor digitorum profundus 29 (3.5 mm) | 0.66-1.55 | 0.0 FDS3 in C2 cruciate pulley | PASS |
-| wrist ulnar 30 | 369 (0.21 %) Humeral head of flexor carpi ulnaris 45 (2.5 mm), Common flexor tendon sheath 40 (3.4 mm), Superficial venous palmar arch 32 (3.3 mm) | 0.50-1.75 | 0.0 FDS3 in C1 cruciate pulley | FAIL |
-| pronation 80 | 2166 (1.25 %) Humero-ulnar head of flexor digitorum superficialis 525 (5.2 mm), Common flexor tendon sheath 224 (5.2 mm), Flexor digitorum profundus 185 (5.2 mm) | 0.64-1.22 | 0.0 FDP2 in C3 cruciate pulley | FAIL |
-| supination 80 | 177 (0.10 %) Bicipitoradial bursa 93 (1.8 mm), Flexor pollicis longus 21 (1.8 mm), Deep venous palmar arch 20 (1.4 mm) | 0.80-1.38 | 0.0 FDP2 in C3 cruciate pulley | PASS |
+| full fist | 1959 (1.13 %) Humero-ulnar head of flexor digitorum superficialis 221 (5.9 mm), Flexor digitorum profundus 184 (6.0 mm), Subcutaneous fat of hand and fingers 146 (3.0 mm) | 0.28-2.14 | 1.5 FDS4 in A1 pulley | FAIL |
+| full extension | 101 (0.06 %) Sagittal bands of middle finger 47 (2.2 mm), Flexor digitorum profundus 22 (2.8 mm), Extensor digitorum 11 (2.5 mm) | 0.75-1.19 | 0.8 FDS3 in A1 pulley | PASS |
+| wrist flexion 80 | 1043 (0.60 %) Humero-ulnar head of flexor digitorum superficialis 308 (5.9 mm), Flexor digitorum profundus 108 (5.6 mm), Superficial venous palmar arch 77 (3.7 mm) | 0.14-2.24 | 0.0 FDS2 in A1 pulley | FAIL |
+| wrist extension 70 | 388 (0.22 %) Extensor digitorum 58 (4.6 mm), Flexor pollicis longus 51 (3.8 mm), Humeral head of flexor carpi ulnaris 44 (3.2 mm) | 0.20-2.07 | 0.0 FDS2 in A1 pulley | FAIL |
+| wrist radial 20 | 145 (0.08 %) Deep venous palmar arch 38 (3.6 mm), Humeral head of flexor carpi ulnaris 22 (2.7 mm), Humeral head of extensor carpi ulnaris 19 (3.1 mm) | 0.66-1.55 | 0.0 FDS3 in C2 cruciate pulley | PASS |
+| wrist ulnar 30 | 433 (0.25 %) Tendon sheath of flexor pollicis longus 80 (3.0 mm), Common flexor tendon sheath 40 (3.3 mm), Superficial venous palmar arch 32 (3.3 mm) | 0.50-1.75 | 0.0 FDS3 in A1 pulley | FAIL |
+| pronation 80 | 2165 (1.25 %) Humero-ulnar head of flexor digitorum superficialis 514 (5.2 mm), Common flexor tendon sheath 240 (5.2 mm), Flexor digitorum profundus 187 (5.2 mm) | 0.64-1.22 | 0.0 FDS2 in A1 pulley | FAIL |
+| supination 80 | 166 (0.10 %) Bicipitoradial bursa 93 (1.8 mm), Deep venous palmar arch 20 (1.4 mm), Flexor pollicis longus 16 (1.4 mm) | 0.80-1.38 | 0.0 FDS2 in A1 pulley | PASS |
 
 Pass: < 0.2 % of soft-tissue vertices newly > 1 mm inside bone, pulley-to-flexor distance grows < 1.5 mm, skin edges not compressed below 0.4 (no candy-wrapper).
 
 | excursion (mm, + = tendon pulled proximally / nerve bed longer) | model |
 |---|---|
-| FDS3: neutral -> full fist | 17.1 |
-| FDP3: neutral -> full fist | 20.5 |
-| FPL1: neutral -> full fist | 9.4 |
-| EDC3: neutral -> full fist | -36.1 |
-| FDS3: wrist extension 70 -> flexion 80 | 30.6 |
-| FDP3: wrist extension 70 -> flexion 80 | 22.4 |
-| FPL1: wrist extension 70 -> flexion 80 | 23.9 |
-| FCR: wrist extension 70 -> flexion 80 | 36.9 |
-| FCU: wrist extension 70 -> flexion 80 | 10.8 |
-| ECRB: wrist extension 70 -> flexion 80 | -21.4 |
-| ECU: wrist extension 70 -> flexion 80 | 19.1 |
-| EDC3: wrist extension 70 -> flexion 80 | -48.5 |
-| median nerve bed length: wrist extension 70 -> flexion 80 | -27.6 (slack wave in flexion 2.0 mm) |
+| FDS3: neutral -> full fist | 42.2 |
+| FDP3: neutral -> full fist | 46.4 |
+| FPL1: neutral -> full fist | 23.0 |
+| EDC3: neutral -> full fist | -21.4 |
+| FDS3: wrist extension 70 -> flexion 80 | 36.7 |
+| FDP3: wrist extension 70 -> flexion 80 | 31.8 |
+| FPL1: wrist extension 70 -> flexion 80 | 20.6 |
+| FCR: wrist extension 70 -> flexion 80 | 34.1 |
+| FCU: wrist extension 70 -> flexion 80 | 35.7 |
+| ECRB: wrist extension 70 -> flexion 80 | -31.0 |
+| ECU: wrist extension 70 -> flexion 80 | -9.4 |
+| EDC3: wrist extension 70 -> flexion 80 | -36.3 |
+| median nerve bed length: wrist extension 70 -> flexion 80 | -35.8 (slack wave in flexion 2.0 mm) |
 
 E2 failed: full fist, wrist flexion 80, wrist extension 70, wrist ulnar 30, pronation 80
+
+## Phase E2b: tendon moment arms vs the ARMS model (McFarland 2023), scaled to our hand {'wrist': 0.911, 'thumb': 1.024, 'digit2': 1.027, 'digit3': 1.119, 'digit4': 1.138, 'digit5': 1.038}
+
+Model = excursion change / joint angle over each half of the range; ARMS = mean of its curve over the same interval x scale. Pass = within 10 %% or 1 mm.
+
+| tendon | dof | interval (deg) | model mm | ARMS mm | result |
+|---|---|---|---|---|---|
+| FDS3 | mcp3_flex | 0 to 45 | 12.8 | 12.8 | PASS |
+| FDS3 | mcp3_flex | 45 to 90 | 15.4 | 15.4 | PASS |
+| FDS3 | pip3 | 0 to 50 | 9.8 | 9.8 | PASS |
+| FDS3 | pip3 | 50 to 100 | 11.5 | 11.5 | PASS |
+| FDP3 | mcp3_flex | 0 to 45 | 11.2 | 11.2 | PASS |
+| FDP3 | mcp3_flex | 45 to 90 | 12.8 | 12.8 | PASS |
+| FDP3 | pip3 | 0 to 50 | 9.1 | 9.1 | PASS |
+| FDP3 | pip3 | 50 to 100 | 10.7 | 10.7 | PASS |
+| FDP3 | dip3 | 0 to 40 | 5.7 | 5.7 | PASS |
+| FDP3 | dip3 | 40 to 80 | 7.0 | 7.0 | PASS |
+| FDP2 | pip2 | 0 to 50 | 7.7 | 7.7 | PASS |
+| FDP2 | pip2 | 50 to 100 | 8.5 | 8.5 | PASS |
+| EDC3 | mcp3_flex | 0 to 45 | -8.9 | -8.9 | PASS |
+| EDC3 | mcp3_flex | 45 to 90 | -6.8 | -6.8 | PASS |
+| FPL1 | mcp1 | 0 to 25 | 12.4 | 12.4 | PASS |
+| FPL1 | mcp1 | 25 to 50 | 14.5 | 14.5 | PASS |
+| FPL1 | ip1 | 0 to 40 | 8.5 | 8.5 | PASS |
+| FPL1 | ip1 | 40 to 80 | 7.6 | 7.5 | PASS |
+| FCR | wrist_fe | -60 to 0 | 12.2 | 12.2 | PASS |
+| FCR | wrist_fe | 0 to 60 | 14.2 | 14.2 | PASS |
+| FCU | wrist_fe | -60 to 0 | 12.0 | 12.0 | PASS |
+| FCU | wrist_fe | 0 to 60 | 14.9 | 14.9 | PASS |
+| ECRB | wrist_fe | -60 to 0 | -13.1 | -13.1 | PASS |
+| ECRB | wrist_fe | 0 to 60 | -11.0 | -11.0 | PASS |
+| ECU | wrist_fe | -60 to 0 | -3.9 | -3.9 | PASS |
+| ECU | wrist_fe | 0 to 60 | -4.4 | -4.4 | PASS |
+| FCU | wrist_ru | -10 to 0 | 20.9 | 20.9 | PASS |
+| FCU | wrist_ru | 0 to 25 | 15.2 | 15.2 | PASS |
+| ECU | wrist_ru | -10 to 0 | 23.5 | 23.6 | PASS |
+| ECU | wrist_ru | 0 to 25 | 19.7 | 19.8 | PASS |
+| FDP3 | wrist_fe | -60 to 0 | 9.0 | 9.0 | PASS |
+| FDP3 | wrist_fe | 0 to 60 | 14.5 | 14.5 | PASS |
+
+| excursion (mm) | model | ARMS (unscaled) | Wehbe 1985 in vivo |
+|---|---|---|---|
+| FDS3 fist (MCP 90, PIP 100, DIP 80), wrist 0 | 40.7 | 36.7 | 24 |
+| FDP3 fist (MCP 90, PIP 100, DIP 80), wrist 0 | 45.0 | 40.5 | 32 |
+| FPL1 (MCP 45, IP 75), wrist 0 | 21.1 | 20.6 | 27 |
+| FDS3 wrist ext 60 -> flex 65 | 30.4 | 33.4 | - |
+| FDP3 wrist ext 60 -> flex 65 | 26.1 | 28.6 | - |
+| FCR wrist ext 60 -> flex 65 | 28.9 | 31.8 | - |
+| FCU wrist ext 60 -> flex 65 | 29.6 | 32.6 | - |
+| ECRB wrist ext 60 -> flex 65 | -26.0 | -28.6 | - |
+| ECU wrist ext 60 -> flex 65 | -9.0 | -10.8 | - |
+
+E2b moment-arm rows failed: 0

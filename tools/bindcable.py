@@ -53,19 +53,28 @@ class CableBuilder:
         self.cables, self.muscles, self.common = [], {}, {}
         J = {j['id']: j for j in rig['joints']}
         self.mcp = {i: np.array(J['mcp%d' % i]['axes'][0]['center']) for i in range(2, 6)}
-        # joint arcs: cable samples near a joint turn about it by a fraction of the joint motion (constant moment arm)
+        # joint zones (E2b): the cable between the zone ends is posed in polar coordinates about the joint
+        # (tisspose.zone). Half-width Z = clip(k * tendon height, Z0, Zmax), k = tan(max flexion / 2 + 10 deg), so the
+        # zone's angular span stays larger than the joint angle (no loops).
         cap = S.pts['Capitate bone'].mean(0)
         self.arcs = {'Capitate bone': ('Radius', cap - 6e-3 * fa['d'], fa['d'], 12e-3, None)}
+        self.zk = {'Capitate bone': (1.19, 20e-3)}
+        self.zdofs = {'Capitate bone': ['wrist_fe', 'wrist_ru'], K.mc(1): []}
         for d in range(1, 6):
-            names = [('cmc1', K.mc(1), 'Trapezium bone', 8e-3)] if d == 1 else []
+            names = [('cmc1', K.mc(1), 'Trapezium bone', 8e-3, 0.84, 12e-3)] if d == 1 else []
             prox = K.ray(d)
-            for jid, child, parent, Z in names + [(('mcp%d' % d), prox[1], prox[0], 8e-3),
-                                                  (('ip1' if d == 1 else 'pip%d' % d), prox[2], prox[1], 6e-3)] + \
-                    ([] if d == 1 else [('dip%d' % d, prox[3], prox[2], 4e-3)]):
+            for jid, child, parent, Z, k, Zx in names + [
+                    (('mcp%d' % d), prox[1], prox[0], 8e-3, 1.43, 12e-3 if d == 1 else 16e-3),
+                    (('ip1' if d == 1 else 'pip%d' % d), prox[2], prox[1], 6e-3, 1.19 if d == 1 else 2.14, 8e-3 if d == 1 else 11e-3)] + \
+                    ([] if d == 1 else [('dip%d' % d, prox[3], prox[2], 4e-3, 1.19, 7e-3)]):
                 ce = np.array(J[jid]['axes'][0]['center'])
                 a, e, _ = S.seg[child]
                 dr = F.unit(e - a) if np.linalg.norm(e - ce) > np.linalg.norm(a - ce) else F.unit(a - e)
                 self.arcs[child] = (parent, ce, dr, Z, d)
+                self.zk[child] = (k, Zx)
+                if jid != 'cmc1':
+                    self.zdofs[child] = ['mcp%d_flex' % d] if jid.startswith('mcp') and d > 1 else [jid]
+        self.mech_tables(J)
         self.zone = {}
         for nm in ('Flexor retinaculum of wrist', 'Extensor retinaculum of wrist', "Volar carpal ligament (roof of Guyon's canal)"):
             v = np.vstack([p[0] for p in D[nm]])
@@ -128,12 +137,58 @@ class CableBuilder:
                     continue
                 x = (P - ce) @ dr
                 lat = np.linalg.norm((P - ce) - np.outer(x, dr), axis=1)
+                near = (np.abs(x) < Z) & (lat < (30e-3 if d is None else 15e-3))
+                if not near.any():
+                    continue
+                k, Zx = self.zk[child]                       # widen the zone with the tendon's height h
+                Z = float(np.clip(k * np.hypot(x, lat)[near].min(), Z, Zx))
                 q = np.abs(x) / Z
                 for i in np.where((q < best) & (lat < (30e-3 if d is None else 15e-3)))[0]:
-                    t = (x[i] + Z) / (2 * Z)
-                    arc[i] = [child, round(float(t * t * (3 - 2 * t)), 4)] + ([wparent] if d is None else [])
+                    arc[i] = [child, round(float((x[i] + Z) / (2 * Z)), 4)] + ([wparent] if d is None else [])
                     best[i] = q[i]
         return W, arc
+
+    # ---------- E2b: zones and tendon mechanics ----------
+    def zones(self, arc):
+        """Contiguous runs of samples per joint zone -> [{child, parent, i0, i1, dofs}] (i0-1, i1+1 = zone ends)."""
+        out, n = [], len(arc)
+        for child in dict.fromkeys(a[0] for a in arc if a):
+            idx = [i for i, a in enumerate(arc) if a and a[0] == child]
+            i0, i1 = max(min(idx), 1), min(max(idx), n - 2)
+            if i1 < i0:
+                continue
+            a = arc[idx[0]]
+            out.append(dict(child=child, parent=a[2] if len(a) > 2 else self.arcs[child][0], i0=i0, i1=i1,
+                            dofs=self.zdofs.get(child, [])))
+        return out
+
+    def mech_tables(self, J):
+        """ARMS moment arms (tools/arms_ma.json) scaled to our hand -> excursion tables F(deg) = integral r dq (m)."""
+        import json, os
+        A = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'arms_ma.json')))
+        c = lambda j: np.array(J[j]['axes'][0]['center'])
+        wc = self.arcs['Capitate bone'][1]
+        sc = {'wrist': np.linalg.norm(c('mcp3') - wc) * 1e3 / A['segment_mm']['wrist'],
+              'thumb': np.linalg.norm(c('ip1') - c('mcp1')) * 1e3 / A['segment_mm']['thumb']}
+        for d in range(2, 6):
+            sc['digit%d' % d] = np.linalg.norm(c('pip%d' % d) - c('mcp%d' % d)) * 1e3 / A['segment_mm']['digit%d' % d]
+        self.scale = {k: round(float(v), 3) for k, v in sc.items()}
+        self.log('E2b ARMS scale (ours / ARMS segment length): %s' % self.scale)
+        grid = np.arange(-90, 125, 5.0)
+        self.mech = {}
+        for tn, curves in A['moment_arms'].items():
+            tab = {}
+            for dof, rows in curves.items():
+                if dof.endswith('_abd') or dof.startswith('cmc1'):
+                    continue                                 # sign convention vs our rig not checked: visual path
+                q, r = np.array(rows, float).T
+                s = sc['wrist'] if dof.startswith('wrist') else sc['thumb'] if dof in ('mcp1', 'ip1') else \
+                    sc['digit%s' % dof[3]]
+                rr = np.interp(grid, q, r) * 1e-3 * s       # clamped beyond the ARMS range
+                Fc = np.r_[0, np.cumsum(0.5 * (rr[1:] + rr[:-1]) * np.radians(5))]
+                Fc -= np.interp(0, grid, Fc)
+                tab[dof] = dict(deg0=float(grid[0]), step=5.0, F=np.round(Fc, 6).tolist())
+            self.mech[tn] = tab
 
     def S_weights(self, P):
         W = K.ray_weights(self.S, P)
@@ -152,7 +207,7 @@ class CableBuilder:
         j, w = K.top4(W)
         c = dict(name=name, kind=kind, pts=np.round(P, 6).tolist(), r=np.round(r, 5).tolist(),
                  nrm=np.round(N, 4).tolist(), j=j.tolist(), w=np.round(w, 3).tolist(),
-                 L=round(float(G.arclen(P)[-1]), 5), arc=arc)
+                 L=round(float(G.arclen(P)[-1]), 5), arc=arc, zones=self.zones(arc))
         c.update(extra)
         return self.add(c), P, N
 
@@ -195,7 +250,7 @@ class CableBuilder:
                 W[0][-3:] = self.S_weights(P[-3:])
             cid, P, N = self.finish(nm, 'tendon', P, r, W, dict(
                 muscle=key, digit=k, insertion=ib, u_mtj=round(float(u_mtj), 5), group=group,
-                bellies=bellies, origin_end=0, insertion_end='last'))
+                bellies=bellies, origin_end=0, insertion_end='last', mech=self.mech.get(nm, {})))
             out.append((cid, P, N, u_mtj))
             p0s.append(P0)
             self.log('cable %-5s len %5.0f mm  tendon %5.0f mm  r %.1f-%.1f mm  ins %s' % (

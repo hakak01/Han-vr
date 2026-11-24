@@ -148,10 +148,48 @@ def main():
     OUT.append('| median nerve bed length: wrist extension 70 -> flexion 80 | %.1f (slack wave in flexion %.1f mm) |' % (
         (b['Lp'] - a['Lp']) * 1e3, b.get('wave_mm', 0)))
     OUT.append('\nE2 failed: ' + (', '.join(fails) if fails else 'none'))
+    e2b_table(ex)
     path = os.path.join(ROOT, 'docs/MOTION_CHECK.md')
     old = open(path).read().split('\n## Phase E2')[0].rstrip('\n')
     open(path, 'w').write(old + '\n' + '\n'.join(OUT) + '\n')
     print('\n'.join(OUT))
+
+
+def e2b_table(ex):
+    """E2b: tendon moment arms (mechanics) vs the ARMS model scaled to our hand; excursions vs ARMS and Wehbe."""
+    A = json.load(open(os.path.join(ROOT, 'tools/arms_ma.json')))
+    sc = R.cab['mech_scale']
+    OUT.append('\n## Phase E2b: tendon moment arms vs the ARMS model (McFarland 2023), scaled to our hand %s\n' % sc)
+    OUT.append('Model = excursion change / joint angle over each half of the range; ARMS = mean of its curve over the same '
+               'interval x scale. Pass = within 10 %% or 1 mm.\n')
+    OUT.append('| tendon | dof | interval (deg) | model mm | ARMS mm | result |\n|---|---|---|---|---|---|')
+    tests = [('FDS3', 'mcp3_flex', (0, 45, 90)), ('FDS3', 'pip3', (0, 50, 100)), ('FDP3', 'mcp3_flex', (0, 45, 90)),
+             ('FDP3', 'pip3', (0, 50, 100)), ('FDP3', 'dip3', (0, 40, 80)), ('FDP2', 'pip2', (0, 50, 100)),
+             ('EDC3', 'mcp3_flex', (0, 45, 90)), ('FPL1', 'mcp1', (0, 25, 50)), ('FPL1', 'ip1', (0, 40, 80)),
+             ('FCR', 'wrist_fe', (-60, 0, 60)), ('FCU', 'wrist_fe', (-60, 0, 60)), ('ECRB', 'wrist_fe', (-60, 0, 60)),
+             ('ECU', 'wrist_fe', (-60, 0, 60)), ('FCU', 'wrist_ru', (-10, 0, 25)), ('ECU', 'wrist_ru', (-10, 0, 25)),
+             ('FDP3', 'wrist_fe', (-60, 0, 60))]
+    bad = 0
+    for k, d, a in tests:
+        rows = np.array(A['moment_arms'][k][d])
+        s = sc['wrist'] if d.startswith('wrist') else sc['thumb'] if d in ('mcp1', 'ip1') else sc['digit' + d[3]]
+        for i in range(2):
+            q = np.linspace(a[i], a[i + 1], 21)
+            ref = np.interp(q, rows[:, 0], rows[:, 1]).mean() * s
+            mod = ex(dict(ZERO, **{d: a[i]}), dict(ZERO, **{d: a[i + 1]}), k) / np.radians(a[i + 1] - a[i])
+            ok = abs(mod - ref) <= max(1.0, 0.1 * abs(ref))
+            bad += not ok
+            OUT.append('| %s | %s | %d to %d | %.1f | %.1f | %s |' % (k, d, a[i], a[i + 1], mod, ref, 'PASS' if ok else 'FAIL'))
+    L = A['length_change_mm']
+    OUT.append('\n| excursion (mm) | model | ARMS (unscaled) | Wehbe 1985 in vivo |\n|---|---|---|---|')
+    F2 = dict(ZERO, mcp3_flex=90, pip3=100, dip3=80)
+    for k, w in (('FDS3', 24), ('FDP3', 32)):
+        OUT.append('| %s fist (MCP 90, PIP 100, DIP 80), wrist 0 | %.1f | %.1f | %d |' % (k, ex(ZERO, F2, k), L[k]['fist'], w))
+    OUT.append('| FPL1 (MCP 45, IP 75), wrist 0 | %.1f | %.1f | 27 |' % (ex(ZERO, dict(ZERO, mcp1=45, ip1=75), 'FPL1'), L['FPL1']['fist']))
+    for k in ('FDS3', 'FDP3', 'FCR', 'FCU', 'ECRB', 'ECU'):
+        OUT.append('| %s wrist ext 60 -> flex 65 | %.1f | %.1f | - |' % (
+            k, ex(dict(ZERO, wrist_fe=-60), dict(ZERO, wrist_fe=65), k), L[k]['wrist_ext60_to_flex65']))
+    OUT.append('\nE2b moment-arm rows failed: %d' % bad)
 
 
 if __name__ == '__main__':

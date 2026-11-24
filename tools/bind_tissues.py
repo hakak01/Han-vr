@@ -234,8 +234,14 @@ def main():
              'twist x (pronation - rest). Tendon: insertion end (last sample) fixed, constant length from the insertion, '
              'muscle-tendon junction at u_mtj; belly moves f x excursion, radius x 1/sqrt(axial scale). Nerves/vessels: '
              'both ends fixed; slack shows as a wave (wavelength glide.wave_m), when taut they glide (uniform strain). '
-             'arc[i] = [child bone, f, (parent)]: sample turns about arc_joints[child].center by fraction f of the parent->child '
-             'motion (rotation slerp from identity, centre moved f x), carried by the parent bone (constant moment arm).',
+             'E2b zones[k] = {child, parent, i0, i1, dofs}: samples i0..i1 between the zone ends i0-1 and i1+1 are posed in '
+             'polar coordinates about arc_joints[child].center (axis = parent->child rotation axis, parent frame): each keeps '
+             'its distance from the axis and takes the ends\' changes of angle, radius and axial position in proportion to '
+             'its rest angle between them (tisspose.zone). '
+             'Tendon mechanics: mech[dof] = excursion table F (m) from deg0 in steps of step deg = integral of the ARMS '
+             'moment arm (tools/arms_ma.json, scaled by mech_scale); a zone\'s material slides by sum F (dofs), the rest of '
+             'the difference to the visual path is taken up in the zone. Zones without dofs (CMC1) use the visual path.',
+        mech_scale=B.scale,
         joints=K.JOINTS, twist=[dict(joint=t, fraction=s) for t, s in zip(K.TWIST, K.TWIST_S)],
         forearm=dict(center=ax['center'], axis=ax['axis'], dof='pronation'),
         glide=dict(wave_m=0.008, wave_max_m=0.002),
