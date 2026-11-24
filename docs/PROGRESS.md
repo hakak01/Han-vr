@@ -21,7 +21,7 @@
 - Rest supination 88 > default limit 80. build_rig.py takes ~8 min (carpal grid).
 
 ## Next step
-- E1 fixes if wanted (ulnar deviation, little finger), then Phase E2 (bind tissues, cables).
+- User to choose: fix E1 known problems (ulnar deviation 25-30, little finger aim) first, or start Phase E2 (bind tissues, cables).
 
 ## Key files
 - tools/build_rig.py, rigfit.py (fits), rigpose.py (pose engine = reference for js/rig.js), rigsolve.py (contact/axis refinement), rigrange.py (ranges), check_rig.py
