@@ -1,28 +1,28 @@
 # PROGRESS (updated 2026-11-24)
 
 ## Done
-- Phase A: assets/hand.glb (2.7 MB) + manifest.json; 294 structures, 334,641 tris; 30/30 bones BodyParts3D.
-- Phase B: WebXR viewer (index.html + js/). Desktop load 2.4 s. Passed Quest 3 emulator test.
-- Phase C: gaps.glb (0.66 MB, 75 structures, approx:true) + visual-check fixes.
-- Realistic view: js/tissues.js (MeshPhysicalMaterial per tissue, clearcoat, triplanar KTX2 detail, HDRI, OT spotlight), js/fibres.js, assets/tissues.json.
-- This session: HDRI installed (assets/env/hdri_1k.hdr, 1.6 MB, loads, no warning). New Cadaver palette from 12 user photos (embalmed, latex-injected). Menu View: Present / Realistic / Cadaver; key V cycles all three. Headless test: no errors, 413 draw calls in all 3 views.
+- Phases A-C + Realistic/Cadaver views (see git history). Movement plan: docs/MOTION.md.
+- Phase E1 rig: tools/build_rig.py -> assets/rig.json (60 kB), assets/joints.json, assets/carpal_model.json (Akhbari 2019 Table S1; docx git-rm'd, credited in ATTRIBUTION.md). Checks: tools/check_rig.py -> docs/MOTION_CHECK.md (24 PASS, 3 FAIL). No viewer changes.
 
 ## Decisions
-- Palettes: tissues.json "palettes".cadaver overrides only colour/roughness/clearcoat/bump/cavity of "tissues" (living stays default). Same materials, no new shaders. startView may be present/realistic/cadaver.
-- Photo medians: muscle #966350, tendon #f0e2d0, ligament #e8d8cc, nerve #c89c7c (range bd997d–d49d5b), latex artery #be6258, vein #b07f80 (1 photo), skin #cc9e86, fat #d8a070.
-- Cadaver albedo after 2 render-vs-photo rounds: muscle #8a5a4a, tendon #f4e8d8, ligament #e2d4c2, nerve #f0c49c, artery #d86a5e (bump 0.4), vein #a87c84, bone #e2d3b0, fat #d6a460, skin #d2a690. Rendered within ~3% (muscle, tendon, ligament, skin, bone, artery); nerve ~8% and vein ~12% darker than photo.
-- Photos are copyrighted atlas images: used only to measure colour, not stored in the repo.
+- Units m, glTF frame of hand.glb. Signs: flexion +, ulnar dev +, pronation +, MCP abd + = radial, CMC1 + = flexion / palmar abduction. Paper Fig. 1: flexion +, ulnar +. Translations +distal/+ulnar/+dorsal: implied capitate centre 12 mm proximal in flexion (in capitate head).
+- Translation scale = cbrt(our capitate 2731 mm3) = 13.98 mm. SP = 0. Model rest: wrist FE 0.3, RU 0.4; forearm supination 88 (vs elbow axis); finger rest flexion 6-23 deg.
+- Distal row (hamate, trapezoid, trapezium) + MC2-5 rigid with capitate: Table S1 intra-row differences (up to 10 deg) made CMC joints collide; paper itself reports < 3 deg.
+- Contact correction: Table S1 + smallest pushes that stop bone overlap, on a 10-deg grid (FE -70..80 x RU -20..30), bilinear at runtime. Median push 2-4 mm, max 12.5 mm at grid corners; proximal row also turns up to 15 deg.
+- Forearm axis: radial head centre -> ulnar head sphere centre, distal end moved 3 mm (pronation overlap 1.1 -> 0 mm).
+- Finger hinges: cylinder fits on cartilage (rms 0.3-0.7 mm); MCP centre = sphere fit. Thumb MCP/IP: joint-facing bone surface (cartilage patch fit badly). PIP2/PIP4 +5, little MCP -10/PIP +15 deg turned to aim at the tubercle.
+- Thumb CMC: both Hollister axes from the trapezium saddle (convex r 6.1 mm -> FE axis in trapezium; concave r 12 mm -> AA axis in MC1, 18 mm apart). Limits FE +/-26 (Cooney arc 53), AA +36/-24 (bone contact).
+- CMC4 cup axis = fallback (perpendicular to MC4); CMC5 = cylinder fit.
 
 ## Known problems
-- cdn.jsdelivr.net blocked in this cloud session: headless test serves three@0.170.0 from a local npm copy (Playwright route). App still uses the CDN.
-- Fat hidden by default, so fat colour not render-checked. Vein colour from 1 photo only.
-- Not tested on a real Quest 3 (clearcoat + 3 texture reads per pixel). Fibre direction wrong on U-shaped structures and pulleys (annular fibres).
-- From Phase C: volar plate/tendon overlap, thin median nerve, fat thin in the hand, cut faces flat colour.
+- Ulnar deviation 25-30 deg: triquetrum/pisiform 4.5 mm inside the rigid hamate (fine up to 20 deg).
+- Little finger flexed points 20 deg off the scaphoid tubercle (target 15); aiming it hits the ring finger in a full fist.
+- CMC1 axes are perpendicular (one quadric; MC1 base surface was not a clean saddle), Hollister found them oblique.
+- Rest supination 88 > default limit 80. build_rig.py takes ~8 min (carpal grid).
 
 ## Next step
-- Phase E1 (docs/MOTION.md) BLOCKED: Akhbari 2019 Table S1 not in data/ (uploaded PDF is main paper only; Wiley + simtk.org unreachable here). Upload Table S1 to data/upload/, then run E1.
-- Phase D (Quest 3 headset fps test) still open.
+- E1 fixes if wanted (ulnar deviation, little finger), then Phase E2 (bind tissues, cables).
 
 ## Key files
-- js/tissues.js (applyPalette, setView), menu.js (View row), main.js (startView) · assets/tissues.json (tissues, palettes), assets/env/hdri_1k.hdr, assets/tex/*.ktx2
-- tools/make_tissue_tex.py, tools/encode_ktx2.mjs · js/looks.js (present view) · assets/look.json
+- tools/build_rig.py, rigfit.py (fits), rigpose.py (pose engine = reference for js/rig.js), rigsolve.py (contact/axis refinement), rigrange.py (ranges), check_rig.py
+- assets/rig.json, joints.json (edit ranges here), carpal_model.json; docs/MOTION_CHECK.md; data/raw/rig_log.txt

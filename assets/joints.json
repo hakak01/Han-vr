@@ -1,0 +1,52 @@
+{
+ "_note": "Typical adult normal ranges in degrees (edit freely). Positive = flexion, pronation, ulnar deviation, radial deviation of MCP (abd), CMC1 flexion/palmar abduction.",
+ "forearm": {
+  "pronation": 80,
+  "supination": 80
+ },
+ "wrist": {
+  "flexion": 80,
+  "extension": 70,
+  "radial": 20,
+  "ulnar": 30
+ },
+ "mcp": {
+  "flexion": 90,
+  "hyperextension": 20,
+  "abd_at_0": 20,
+  "abd_at_90": 5
+ },
+ "pip": {
+  "flexion": 110,
+  "hyperextension": 0
+ },
+ "dip": {
+  "flexion": 80,
+  "hyperextension": 10
+ },
+ "thumb_mcp": {
+  "flexion": 50,
+  "hyperextension": 0
+ },
+ "thumb_ip": {
+  "flexion": 80,
+  "hyperextension": 15
+ },
+ "cmc_cup": {
+  "ring": 10,
+  "little": 20
+ },
+ "active_dip_per_pip": 0.667,
+ "thumb_cmc": {
+  "_auto": true,
+  "_note": "from rest pose; collision side = bones touch (+0.5 mm); free side = total arc (Cooney 1981: FE 53, AA 42) minus collision side, min 10",
+  "cmc1_fe": {
+   "pos": 26,
+   "neg": 26
+  },
+  "cmc1_aa": {
+   "pos": 36,
+   "neg": 24
+  }
+ }
+}
