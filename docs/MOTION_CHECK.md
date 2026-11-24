@@ -42,3 +42,39 @@ Rest model already overlapping > 0.5 mm: First/Trapezium 1.21 mm, Third/Trapezoi
 | tip pinch middle: pulp gap (mm) and angle between pulp normals (>=135 = facing) | 8.1 mm, 150 deg (CMC1 FE 17 AA -24, MCP 28, IP 69) | PASS |
 
 Failed: wrist ulnar 30, dart-thrower: flex 45 + ulnar 25 (off grid), fingers flexed (MCP 90, PIP 90) point to scaphoid tubercle (<= 15 deg, index..little)
+
+## Phase E2: tissues follow the bones (tools/check_tissues.py, python reference tools/tisspose.py)
+
+Soft tissue = all non-bone, non-footprint vertices (173168). "New depth" = depth inside a posed bone minus the depth already present in the neutral pose (rest model has some tissue touching/inside bone).
+
+| pose | new depth > 1 mm (vertices, worst structure) | skin edge stretch 0.5-99.5 % | flexor off pulley (mm) | result |
+|---|---|---|---|---|
+| neutral | 0 (0.00 %) - | 1.00-1.00 | 0.0  | PASS |
+| full fist | 1794 (1.04 %) Humero-ulnar head of flexor digitorum superficialis 223 (5.9 mm), Subcutaneous fat of hand and fingers 146 (3.0 mm), Palmar interphalangeal ligaments 121 (2.8 mm) | 0.28-2.14 | 2.0 FPL1 in A2 pulley | FAIL |
+| full extension | 132 (0.08 %) Sagittal bands of middle finger 47 (2.2 mm), Extensor digiti minimi 23 (3.9 mm), Flexor digitorum profundus 23 (2.2 mm) | 0.75-1.19 | 0.4 FDS4 in A5 pulley | PASS |
+| wrist flexion 80 | 744 (0.43 %) Humero-ulnar head of flexor digitorum superficialis 113 (4.1 mm), Superficial venous palmar arch 77 (3.7 mm), Tendon sheath of flexor carpi radialis 60 (2.8 mm) | 0.14-2.24 | 0.0 FDS4 in C3 cruciate pulley | FAIL |
+| wrist extension 70 | 512 (0.30 %) Extensor digitorum 194 (4.9 mm), Flexor pollicis longus 60 (4.2 mm), Superficial venous palmar arch 40 (3.4 mm) | 0.20-2.07 | 0.0 FDP2 in C2 cruciate pulley | FAIL |
+| wrist radial 20 | 164 (0.09 %) Abductor pollicis longus 54 (5.0 mm), Deep venous palmar arch 38 (3.6 mm), Flexor digitorum profundus 29 (3.5 mm) | 0.66-1.55 | 0.0 FDS3 in C2 cruciate pulley | PASS |
+| wrist ulnar 30 | 369 (0.21 %) Humeral head of flexor carpi ulnaris 45 (2.5 mm), Common flexor tendon sheath 40 (3.4 mm), Superficial venous palmar arch 32 (3.3 mm) | 0.50-1.75 | 0.0 FDS3 in C1 cruciate pulley | FAIL |
+| pronation 80 | 2166 (1.25 %) Humero-ulnar head of flexor digitorum superficialis 525 (5.2 mm), Common flexor tendon sheath 224 (5.2 mm), Flexor digitorum profundus 185 (5.2 mm) | 0.64-1.22 | 0.0 FDP2 in C3 cruciate pulley | FAIL |
+| supination 80 | 177 (0.10 %) Bicipitoradial bursa 93 (1.8 mm), Flexor pollicis longus 21 (1.8 mm), Deep venous palmar arch 20 (1.4 mm) | 0.80-1.38 | 0.0 FDP2 in C3 cruciate pulley | PASS |
+
+Pass: < 0.2 % of soft-tissue vertices newly > 1 mm inside bone, pulley-to-flexor distance grows < 1.5 mm, skin edges not compressed below 0.4 (no candy-wrapper).
+
+| excursion (mm, + = tendon pulled proximally / nerve bed longer) | model |
+|---|---|
+| FDS3: neutral -> full fist | 17.1 |
+| FDP3: neutral -> full fist | 20.5 |
+| FPL1: neutral -> full fist | 9.4 |
+| EDC3: neutral -> full fist | -36.1 |
+| FDS3: wrist extension 70 -> flexion 80 | 30.6 |
+| FDP3: wrist extension 70 -> flexion 80 | 22.4 |
+| FPL1: wrist extension 70 -> flexion 80 | 23.9 |
+| FCR: wrist extension 70 -> flexion 80 | 36.9 |
+| FCU: wrist extension 70 -> flexion 80 | 10.8 |
+| ECRB: wrist extension 70 -> flexion 80 | -21.4 |
+| ECU: wrist extension 70 -> flexion 80 | 19.1 |
+| EDC3: wrist extension 70 -> flexion 80 | -48.5 |
+| median nerve bed length: wrist extension 70 -> flexion 80 | -27.6 (slack wave in flexion 2.0 mm) |
+
+E2 failed: full fist, wrist flexion 80, wrist extension 70, wrist ulnar 30, pronation 80

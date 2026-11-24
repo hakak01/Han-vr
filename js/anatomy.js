@@ -6,6 +6,15 @@ const GHOST = 0.25;
 const mats = (m) => { const { present, real } = m.userData.mats; return real && real !== present ? [present, real] : [present]; };
 const AXES = { sagittal: new THREE.Vector3(1, 0, 0), axial: new THREE.Vector3(0, 1, 0), coronal: new THREE.Vector3(0, 0, 1) };
 
+// Mesh -> world matrix of the bind (rest) pose. Skinned meshes (hand_rig.glb): texture/fibre coordinates must use
+// the pre-skinning position, so fibres move with the tissue; meshopt de-quantisation sits in the inverse-bind matrices.
+function bindSpace(m) {
+  if (!m.isSkinnedMesh) return m.matrixWorld;
+  const sk = m.skeleton;
+  const b = new THREE.Matrix4().multiplyMatrices(sk.bones[0].matrixWorld, sk.boneInverses[0]);
+  return new THREE.Matrix4().multiplyMatrices(m.matrixWorld, m.bindMatrixInverse).multiply(b).multiply(m.bindMatrix);
+}
+
 export class Anatomy {
   // root: Group that the user moves. gltfScene: loaded scene. manifest: list. look: look.json
   constructor(root, gltfScene, manifest, look) {
@@ -40,7 +49,7 @@ export class Anatomy {
       node.traverse((m) => {
         if (!m.isMesh) return;
         const key = lookKey(e.layer, m.material && m.material.name, s.kind, e.name);
-        const nm = new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld);
+        const nm = new THREE.Matrix4().multiplyMatrices(inv, bindSpace(m));
         m.userData.gltfMat = m.material && m.material.name;
         m.material = makeMaterial(look, key, m, nm, this.clipPlanes);
         m.userData.mats = { present: m.material };   // 'real' is added by tissues.js

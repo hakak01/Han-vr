@@ -15,11 +15,16 @@ varying vec3 vTq, vFT, vFB;
 attribute vec3 fibreQ, fibreT, fibreB;
 #endif
 `;
+// Runs before skinning: 'transformed' and fibreQ are bind-pose, so the texture sticks to the tissue;
+// the fibre directions are turned by the skin matrix.
 const VERT_BODY = /* glsl */`
 #ifdef FIBRE
   vTq = fibreQ * uTile; vec3 fT = fibreT, fB = fibreB;
 #else
   vTq = (uNoiseMat * vec4(transformed, 1.0)).xyz * uTile; vec3 fT = uFrameT, fB = uFrameB;
+#endif
+#ifdef USE_SKINNING
+  fT = (skinMatrix * vec4(fT, 0.0)).xyz; fB = (skinMatrix * vec4(fB, 0.0)).xyz;
 #endif
   vFT = normalize(mat3(modelViewMatrix) * fT); vFB = normalize(mat3(modelViewMatrix) * fB);
 `;

@@ -1,4 +1,5 @@
 // Fibre frames without UVs: follow each mesh's centreline so fibres stay lengthwise around bends.
+// Uses the geometry (bind-pose, pre-skinning) positions, so on skinned meshes the fibres move with the tissue.
 // Adds vertex attributes fibreQ ("straightened" position in metres: x = across, y = along, z = across),
 // fibreT (fibre direction) and fibreB (across direction); T and B are in the mesh's own space.
 import * as THREE from 'three';
