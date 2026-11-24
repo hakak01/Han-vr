@@ -20,7 +20,8 @@
 - From Phase C: volar plate/tendon overlap, thin median nerve, fat thin in the hand, cut faces flat colour.
 
 ## Next step
-- Phase D: Quest 3 headset test (fps in Tools tab in all 3 views), user gives numbered corrections. Optional: living intra-op photos to check the Realistic (living) palette the same way.
+- Phase E1 (docs/MOTION.md) BLOCKED: Akhbari 2019 Table S1 not in data/ (uploaded PDF is main paper only; Wiley + simtk.org unreachable here). Upload Table S1 to data/upload/, then run E1.
+- Phase D (Quest 3 headset fps test) still open.
 
 ## Key files
 - js/tissues.js (applyPalette, setView), menu.js (View row), main.js (startView) · assets/tissues.json (tissues, palettes), assets/env/hdri_1k.hdr, assets/tex/*.ktx2
