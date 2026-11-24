@@ -150,8 +150,10 @@ def main():
     OUT.append('\nE2 failed: ' + (', '.join(fails) if fails else 'none'))
     e2b_table(ex)
     path = os.path.join(ROOT, 'docs/MOTION_CHECK.md')
-    old = open(path).read().split('\n## Phase E2')[0].rstrip('\n')
-    open(path, 'w').write(old + '\n' + '\n'.join(OUT) + '\n')
+    txt = open(path).read()
+    old = txt.split('\n## Phase E2')[0].rstrip('\n')
+    tail = ('\n## Phase E3' + txt.split('\n## Phase E3', 1)[1]) if '\n## Phase E3' in txt else ''   # kept
+    open(path, 'w').write(old + '\n' + '\n'.join(OUT) + '\n' + tail)
     print('\n'.join(OUT))
 
 

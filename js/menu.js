@@ -19,8 +19,8 @@ export class Menus {
 
   buildMenu() {
     const p = this.menu; p.clear();
-    [['layers', 'Layers'], ['search', 'Search'], ['tools', 'Tools']].forEach(([k, l], i) =>
-      p.button(15 + i * 205, 12, 195, 56, l, () => { this.tab = k; this.refresh(); }, { active: this.tab === k, size: 26 }));
+    [['layers', 'Layers'], ['search', 'Search'], ['tools', 'Tools'], ['move', 'Move']].forEach(([k, l], i) =>
+      p.button(15 + i * 154, 12, 148, 56, l, () => { this.tab = k; this.refresh(); }, { active: this.tab === k, size: 25 }));
     this['tab_' + this.tab](p);
     p.draw();
   }
@@ -66,6 +66,11 @@ export class Menus {
     p.button(480, y, 145, 62, 'Clear', () => { this.query = ''; this.page = 0; this.refresh(); });
   }
 
+  tab_move(p) {
+    if (this.app.move) this.app.move.ui.build(p);
+    else p.text(20, 120, 'Loading the rig…', { size: 24, color: '#9aa' });
+  }
+
   tab_tools(p) {
     const A = this.A, c = A.clip; let y = 90;
     p.text(20, y + 10, 'Cross-section (clipping plane)', { size: 22, bold: true }); y += 34;
@@ -101,6 +106,7 @@ export class Menus {
       p.text(20, 60, this.app.inXR() ? 'Point the right controller at a structure and pull the trigger.'
         : 'Click or tap a structure to select it.', { size: 24, wrap: 600, color: '#bbb' });
       p.button(15, 250, 300, 62, 'Show all', () => { A.showAll(); this.refresh(); });
+      this.glideLines(p, null, 120);
     } else {
       p.text(20, 36, s.name, { size: 30, bold: true, wrap: 560, maxLines: 2 });
       p.button(575, 12, 50, 50, '✕', () => { A.select(null); this.refresh(); });
@@ -111,8 +117,14 @@ export class Menus {
         ['Show all', () => A.showAll()], ['Focus', () => this.app.focus(s)]];
       b.forEach(([l, f], i) => p.button(15 + i * 123, 240, 116, 72, l, () => { f(); this.refresh(); },
         { size: 22, active: (l === 'Ghost' && s.ghost) || (l === 'Isolate' && !!A.isolated) }));
+      this.glideLines(p, s, s.approx ? 214 : 190);
     }
     p.draw();
+  }
+  // live tendon excursion / nerve glide (vs neutral) from move.js
+  glideLines(p, s, y) {
+    const L = this.app.move ? this.app.move.aids.lines(s) : [];
+    L.slice(0, s ? Math.max(1, Math.floor((236 - y) / 22)) : 5).forEach((t, i) => p.text(20, y + i * 22, t, { size: 19, color: '#ffd27a' }));
   }
 
   // physical keyboard on desktop

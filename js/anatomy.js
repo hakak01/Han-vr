@@ -42,6 +42,7 @@ export class Anatomy {
     const bySan = new Map(manifest.map((e) => [sanitize(e.name), e]));
     const inv = new THREE.Matrix4().copy(root.matrixWorld).invert();
     for (const node of [...gltfScene.children]) {
+      if (node.isBone) continue;                               // skeleton joints (hand_rig.glb), posed by move.js
       const e = info.get(node.userData.name) || bySan.get(node.name);
       if (!e) { console.warn('not in manifest', node.name); continue; }
       const s = { name: e.name, layer: e.layer, kind: e.kind || null, approx: !!e.approx, source: e.source,

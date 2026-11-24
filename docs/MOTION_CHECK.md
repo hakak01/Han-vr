@@ -131,3 +131,32 @@ Model = excursion change / joint angle over each half of the range; ARMS = mean 
 | ECU wrist ext 60 -> flex 65 | -9.0 | -10.8 | - |
 
 E2b moment-arm rows failed: 0
+
+## Phase E3: JavaScript poser (js/rig.js, cables.js, tissuemove.js) vs the python reference (tisspose.py)
+
+Measured 2026-11-24 in headless Chromium on assets/hand_rig.glb (meshopt, quantised) against data/raw/hand_rig_raw.glb.
+Vertices matched per primitive by rest position (match <= 0.03 mm).
+
+| pose | vertices | mean error (mm) | max error (mm) |
+|---|---|---|---|
+| rest, full fist, wrist flexion 80 | bellies, lumbricals, lateral bands (skin + slide / shift) | 0.002-0.03 | 0.19 |
+| rest, full fist, wrist flexion 80 | tendons, sheaths, median nerve (_CABLE) | 0.21-0.25 | 1.39 |
+
+The _CABLE error is the same at rest: 12-bit quantisation of that attribute by gltf-transform (not the poser).
+
+| excursion (mm) | JS | python E2b |
+|---|---|---|
+| FDS3 neutral -> fist (MCP 90, PIP 100, DIP 80) | 40.7 | 40.7 |
+| FDP3 neutral -> fist | 45.0 | 45.0 |
+| FPL1 MCP 45, IP 75 | 21.1 | 21.1 |
+| FDP3 wrist ext 60 -> flex 65 | 26.1 | 26.1 |
+| Median nerve glide at the wrist, wrist ext 60 -> flex 65 (Wright 1996: 19.6) | 10.6 | - (E4) |
+
+Other E3 checks: grab IK reaches reachable targets to < 0.1 mm (index tip, thumb tip, capitate, MC3);
+tenodesis (constant FDP/FPL length): wrist ext 70 -> index MCP 49 / PIP 55, wrist 0 -> 23 / 25, wrist flex 40 -> 0 / 0.
+Cost per pose change (2.1 GHz Xeon, after JIT): single finger 4-5 ms, wrist or forearm 8-11 ms; soft tissue is updated
+every 1-3 frames while animating (bones every frame). Click/trigger pick after a pose change 60 ms, then 15 ms.
+
+Presets (tools/make_presets.py -> assets/presets.json): tip pinch 8.0 mm pulp gap (166 deg), key pinch 7.0 mm,
+Kapandji 3-6 pulp gap 8.0-8.1 mm (150-166 deg). Not reached (gap to target): Kapandji 1 18 mm, 2 42 mm, 7 58 mm,
+8 44 mm, 9 34 mm, 10 35 mm, thumb in palm (Finkelstein) 34 mm: thumb CMC1 range/axes of the E1 rig.

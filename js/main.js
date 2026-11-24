@@ -8,8 +8,9 @@ import { Anatomy } from './anatomy.js';
 import { Menus } from './menu.js';
 import { XR } from './xr.js';
 import { Realism } from './tissues.js';
+import { Move } from './move.js';
 
-const GLB_SIZE = 2.9e6, GAPS_SIZE = 0.7e6;   // used for the loading bar if the server gives no size
+const GLB_SIZE = 4.7e6;   // hand_rig.glb (all structures, skinned): loading bar if the server gives no size
 const app = { fps: 0 };
 window.app = app;
 
@@ -36,19 +37,16 @@ const fill = document.getElementById('fill'), loadText = document.getElementById
 const fail = (e) => { loadText.textContent = 'Loading failed: ' + e; console.error(e); };
 
 async function load() {
-  const [look, manifest, gapsMan] = await Promise.all(['assets/look.json', 'assets/manifest.json', 'assets/gaps.json']
-    .map((u) => fetch(u, { cache: 'no-cache' }).then((r) => r.ok ? r.json() : [])));
+  const J = (u) => fetch(u, { cache: 'no-cache' }).then((r) => r.ok ? r.json() : null);
+  const [look, manifest, gapsMan] = await Promise.all(['assets/look.json', 'assets/manifest.json', 'assets/gaps.json'].map(J));
+  const motion = Promise.all(['rig', 'carpal_model', 'joints', 'cables', 'presets'].map((n) => J('assets/' + n + '.json')));
   app.bg = new THREE.Color(look.background); scene.background = app.bg;
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-  const got = {}, tot = {};
-  const bar = () => { fill.style.width = Math.min(100, 100 * (got.h + got.g || 0) / ((tot.h || GLB_SIZE) + (tot.g || GAPS_SIZE))) + '%'; };
-  const prog = (k) => (e) => { got[k] = e.loaded; tot[k] = e.total; bar(); };
-  got.h = got.g = 0;
-  const [gltf, gaps] = await Promise.all([loader.loadAsync('assets/hand.glb', prog('h')),
-    loader.loadAsync('assets/gaps.glb', prog('g')).catch((e) => { console.warn('gaps.glb not loaded', e); return null; })]);
-  if (gaps) for (const n of [...gaps.scene.children]) gltf.scene.add(n);   // approximate (Phase C) structures
+  const gltf = await loader.loadAsync('assets/hand_rig.glb', (e) => { fill.style.width = Math.min(100, 100 * e.loaded / (e.total || GLB_SIZE)) + '%'; });
   loadText.textContent = 'Preparing…';
   const A = new Anatomy(root, gltf.scene, manifest.concat(gapsMan || []), look); app.anatomy = A;
+  const [rig, cm, joints, cab, presets] = await motion;
+  app.move = new Move(app, gltf.scene, { rig, cm, joints, cab, presets: presets || {} });
   app.menus = new Menus(app);
   A.onChange = () => app.menus && app.menus.buildInfo();
   app.menus.menu.attachDom('menuCanvas'); app.menus.info.attachDom('infoCanvas');
@@ -112,9 +110,10 @@ renderer.setAnimationLoop(() => {
   frames++; tFps += dt;
   if (tFps >= 1) {
     app.fps = Math.round(frames / tFps); frames = 0; tFps = 0;
-    if (app.menus && app.menus.tab === 'tools') app.menus.refresh();
+    if (app.menus && (app.menus.tab === 'tools' || app.menus.tab === 'move')) app.menus.refresh();
   }
   if (app.xr) app.xr.update(dt);
+  if (app.move) app.move.update(dt);
   if (app.realism) app.realism.update();
   if (!app.inXR()) controls.update();
   if (app.anatomy) { root.updateMatrixWorld(); app.anatomy.updateClip(); }

@@ -20,8 +20,9 @@ export class XR {
       ctrl.addEventListener('disconnected', () => { h.hand = null; h.source = null; });
       ctrl.addEventListener('selectstart', () => this.trigger(h, true));
       ctrl.addEventListener('selectend', () => this.trigger(h, false));
-      ctrl.addEventListener('squeezestart', () => { this.grabbing.add(h); this.grab = null; });
-      ctrl.addEventListener('squeezeend', () => { this.grabbing.delete(h); this.grab = null; });
+      // squeeze: grab a bone (Move tab, grab.js) or else move / zoom the model
+      ctrl.addEventListener('squeezestart', () => { if (app.move && app.move.grab.squeeze(h, true)) return; this.grabbing.add(h); this.grab = null; });
+      ctrl.addEventListener('squeezeend', () => { if (app.move && app.move.grab.squeeze(h, false)) return; this.grabbing.delete(h); this.grab = null; });
     }
     // pointer line + cursor for the right hand
     this.line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3(0, 0, -1)]),
@@ -49,7 +50,7 @@ export class XR {
   }
 
   async start(type) {
-    const s = await navigator.xr.requestSession(type, { optionalFeatures: ['local-floor', 'bounded-floor'] });
+    const s = await navigator.xr.requestSession(type, { optionalFeatures: ['local-floor', 'bounded-floor', 'hand-tracking'] });
     this.mode = type; const app = this.app;
     app.scene.background = type === 'immersive-ar' ? null : app.bg;
     app.renderer.xr.setFoveation(1);
