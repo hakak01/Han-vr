@@ -9,15 +9,16 @@
 - Scale ARMS by segment length ours/ARMS: wrist 0.911, thumb 1.024, digits 2-5 1.027/1.119/1.138/1.038. ARMS r clamped beyond its range (e.g. PIP > 100, wrist > 70).
 - Zone half-width = clip(k x tendon height, Z0, Zmax); k = tan(max/2 + 10 deg): MCP 1.43 (Zmax 16 mm), PIP 2.14 (11), DIP 1.19 (7), wrist 1.19 (20), CMC1 0.84 (12).
 - Tendon material map: insertion fixed; outside zones rest length kept; a zone holds rest length - E (shortfall carried proximally). Belly slide = whole-unit shortening (sum of E).
+- User decision 2026-11-24: keep ARMS excursions. E4 excursion reference = ARMS (scaled, 25 %); Wehbe 1985 (in vivo, post-op active motion) shown for comparison only, not pass/fail.
 - Not used from ARMS: MCP abduction, CMC1 (sign convention vs our rig unchecked) -> visual path there; pronation effect on ECU (Horii 1993) not modelled.
 
 ## Known problems
-- Fist excursions now FDS3 40.7, FDP3 45.0, FPL1 21.1 mm (ARMS 36.7/40.5/20.6) vs Wehbe in vivo 24/32/27: E4 (25 %) fails for FDS/FDP. Needs user decision: keep ARMS or calibrate to Wehbe.
+- Fist excursions FDS3 40.7, FDP3 45.0, FPL1 21.1 mm (ARMS 36.7/40.5/20.6) exceed Wehbe in vivo 24/32/27 (accepted, see Decisions).
 - Inside-bone (fist 1.13 %, wrist flex 0.60 %, pronation 1.25 %): mostly FDS/FDP bellies, now sliding further; fist pulley gap 1.5 mm (limit < 1.5). PL end kinks in pronation (E2 skin weights).
 - E1 problems (ulnar dev 30 overlap, little finger aim) open.
 
 ## Next step
-- User: decide excursion target (above). Then Phase E3: js/rig.js, cables.js, move.js; port tisspose.zone + material map + mech tables (cables.json: zones, mech, mech_scale).
+- Phase E3: js/rig.js, cables.js, move.js; port tisspose.zone + material map + mech tables (cables.json: zones, mech, mech_scale).
 
 ## Key files
 - tools/arms_ma.py (needs pip opensim in a venv), arms_ma.json, bindcable.py, tisspose.py, check_tissues.py; assets/cables.json; ARMS files only in data/raw/arms (not committed).
