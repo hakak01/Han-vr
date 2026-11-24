@@ -19,6 +19,7 @@
 
 ## Next step
 - Phase E3: js/rig.js, cables.js, move.js (port tools/rigpose.py + tisspose.py), "Move" tab.
+- User to test first: Present/Realistic/Cadaver views still load on Quest (anatomy.js, tissues.js edited); review E2 preview renders.
 
 ## Key files
 - tools/bind_tissues.py, bindskin.py, bindcable.py, cablegeom.py, glbskin.py, zcurves.py, tisspose.py, check_tissues.py; assets/hand_rig.glb, cables.json; data/raw/bind_log.txt
