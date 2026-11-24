@@ -1,4 +1,4 @@
-# PROGRESS (updated 2026-11-23)
+# PROGRESS (updated 2026-11-24)
 
 ## Done
 - Phase A: assets/hand.glb (2.7 MB) + manifest.json; 294 structures, 334,641 tris; 30/30 bones BodyParts3D.
