@@ -1,4 +1,4 @@
-# PROGRESS (updated 2026-11-24)
+# PROGRESS (updated 2026-11-25)
 
 ## Done
 - Phases A-C, views, E1 rig, E2/E2b tissue binding + ARMS mechanics (git history; plan in docs/MOTION.md).
