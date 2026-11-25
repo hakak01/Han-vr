@@ -1,26 +1,28 @@
 # PROGRESS (updated 2026-11-25)
 
 ## Done
-- Phases A-C, views, E1 rig, E2/E2b tissue binding + ARMS mechanics (git history; plan in docs/MOTION.md).
-- Phase E3 (controls): viewer loads assets/hand_rig.glb (skinned, all 369 structures). New wrist-menu tab "Move": sliders with degree readout for all 25 dofs (pages Wrist, Thumb, Index-Mid, Ring-Little), Reset pose, Neutral; 23 animated presets (speed 0.25-2.5x, loop, stop) incl. Kapandji 1-10; tenodesis; grab bones (VR squeeze / desktop press-drag, CCD IK, within range); Mirror my hand (WebXR hand-tracking); glide rings + live excursion in the info panel; ligament strain colour; ghost of neutral. JS poser = python tisspose.py (docs/MOTION_CHECK.md, Phase E3).
+- Phases A-C, views, E1 rig, E2/E2b tissue binding + ARMS mechanics, E3 Move tab (git history; plan docs/MOTION.md).
+- Phase E4: `node tools/check_motion.mjs` opens the real viewer in headless Chromium (Playwright, local three 0.170.0) and writes "Phase E4" in docs/MOTION_CHECK.md (test | published | model | pass). ~2 min.
+- Fixes: median nerve + 10 digital branches glide as one elastic tree (js/nervetree.js); tendon material proximal to the musculotendinous junction shortens with the belly instead of sliding past the origin (cables.js sigma); "Full fist" thumb moved clear of the fingers.
 
 ## Decisions
-- Soft tissue on the GPU skin + per-vertex offset aDelta added before skinning (ShaderChunk patch), so fibre/noise textures keep bind-pose coordinates. Offsets: cable vertices B^-1(target - skinned), bellies/lumbricals bind-space offset.
-- Bones every frame; cables + offsets only when bones they depend on moved, and every 1-3 frames while animating (cost 4-11 ms per full update on a 2.1 GHz CPU).
-- Skinned bounds: frustum culling off; cheap conservative spheres per pose (rest sphere carried by each skin joint + max offset); exact pick on cached CPU-skinned positions only on click/trigger (60 ms first, 15 ms after).
-- Presets in assets/presets.json (tools/make_presets.py, thumb poses optimised on bone meshes, 17 min). Keys: unlisted fingers/thumb = 0, forearm/wrist kept; DIP "link" = 0.667 x PIP (Aids page slider).
-- Tenodesis = constant FDP2-5 / FPL length (ARMS tables); resting cascade s = 0.25-0.40 at wrist 0.
-- Strain = end-to-end length of fixed-vertex centroids vs neutral, per vertex nearest bone pair (same ray / carpus / MC-MC), colour scale +/-10 %.
-- Mirror: fingers from joint positions (palm normal from wrist + index/little MCP), thumb CMC by IK on the metacarpal direction; wrist/forearm not mirrored (WebXR tracks no forearm); 100 ms smoothing.
+- Excursion pass = within 25 % of ARMS scaled to our hand (user decision 2026-11-24); Wehbe shown with % difference.
+- Fist = MCP 90 / PIP 110 / DIP 80 (joints.json max), thumb MCP 50 / IP 80; "total" = wrist ext 70 + extended -> flex 80 + fist.
+- Nerve tree: springs k = area / length; area median 10, common digital 3, proper digital 1.8 mm2 (typical sizes, editable in nervetree.js). Fixed at proximal cut and fingertips. Wave only where a piece is compressed.
+- Glide marker: nerve point 20 mm proximal to its point nearest the lunate (bed rigid with the radius there).
+- Full fist thumb: CMC FE 0, AA 20, MCP 50, IP 30 (was 20/0/50/40; thumb went 1-5 mm into index/middle).
+- Tissue-in-bone pass = < 0.2 % of soft vertices newly > 1 mm inside bone (E2 rule); pulley growth < 1.5 mm.
+- fps pass = mean JS frame <= 5 ms and 95th pct <= 13.9 ms on this CPU ("Full fist" stepped at 72 Hz).
+- Tried and reverted: deep forearm tissue keeping its radius weight (linear-blend collapse made pronation worse, 1.28 -> 2.11 %).
 
-## Known problems
-- Not reachable with E1 thumb CMC ranges/axes: Kapandji 1, 2, 7-10 and thumb-in-palm (gaps 18-58 mm, presets.json "log").
-- Median nerve glide wrist ext 60 -> flex 65 = 10.6 mm (Wright 19.6) - E4 test.
-- Tendon/sheath vertices 0.2 mm mean (1.4 max) off: 12-bit _CABLE quantisation in hand_rig.glb (meshopt). Extensor hood / palmar structures show through thin skin (also at rest), palm skin opens in a full fist (E2 binding).
-- Untested here (no headset): VR squeeze-grab, hand-tracking mirror (finger flexion signs!), Quest fps. Older E1/E2 problems still open.
+## Results (MOTION_CHECK.md)
+- PASS: all 6 excursions (vs ARMS; Wehbe +76/+45/-15/+61/+56/+24 %), median glide 22.0 (Wright 19.6) and 7.9 mm (9.7), tenodesis, 9 Kapandji presets.
+- FAIL: MCP collaterals shorter in flexion (8 of 9 measurable sides; one index side has < 8 fixed vertices): Z-Anatomy origin lies on the flexion axis (0 mm dorsal), no cam effect.
+- FAIL tissue in bone: 13 presets 0.22-1.54 % (fist 0.78, was 1.86): volar finger tissue at flexion creases 2-3 mm, thumb into palm fat (Finkelstein), pronation 1.28 % (twist skinning). Pulley gap FDS4 at A1 1.5-1.9 mm.
+- fps: mean 3.7-4.2 ms, but soft-tissue frames 12-18 ms (realistic 95th pct 16 ms FAIL) -> may drop frames on Quest while animating.
 
 ## Next step
-- Phase E4: tools/check_motion.mjs (headless) -> accuracy table in docs/MOTION_CHECK.md.
+- Your choice: (a) move MCP collateral origins dorsal (re-bind) or accept; (b) corrective offsets at finger creases + pronation (dual-quaternion or more twist joints); (c) spread soft-tissue update over frames for Quest.
 
 ## Key files
-- js/rig.js (pose engine), cables.js (cable posing), tissuemove.js (vertex offsets, bounds, pick), move.js (state, presets, tenodesis), grab.js (grab/IK/mirror), aids.js, movemenu.js; tools/make_presets.py; assets/presets.json.
+- tools/check_motion.mjs, motion_tests.js (tests), motion_inside.js (bone depth); js/nervetree.js, cables.js, move.js; assets/presets.json.

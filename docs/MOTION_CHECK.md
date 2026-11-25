@@ -160,3 +160,70 @@ every 1-3 frames while animating (bones every frame). Click/trigger pick after a
 Presets (tools/make_presets.py -> assets/presets.json): tip pinch 8.0 mm pulp gap (166 deg), key pinch 7.0 mm,
 Kapandji 3-6 pulp gap 8.0-8.1 mm (150-166 deg). Not reached (gap to target): Kapandji 1 18 mm, 2 42 mm, 7 58 mm,
 8 44 mm, 9 34 mm, 10 35 mm, thumb in palm (Finkelstein) 34 mm: thumb CMC1 range/axes of the E1 rig.
+
+## Phase E4: accuracy test (tools/check_motion.mjs, headless Chromium on the live viewer code)
+
+Run 2026-11-25. Pass = within 25 % unless stated. Excursion reference = ARMS model (McFarland 2023) scaled to our hand (user decision 2026-11-24); Wehbe & Hunter 1985 (in vivo) shown with the % difference.
+
+| test | published | model | pass |
+|---|---|---|---|
+| Excursion FDS3, wrist 0, fingers 0 -> full fist (MCP 90, PIP 110, DIP 80) (mm) | ARMS 42.2; Wehbe 24 (model +76 %) | 42.2 | PASS |
+| Excursion FDP3, same (mm) | ARMS 46.4; Wehbe 32 (model +45 %) | 46.4 | PASS |
+| Excursion FPL, wrist 0, thumb 0 -> MCP 50, IP 80 (mm) | ARMS 23.0; Wehbe 27 (model -15 %) | 23.0 | PASS |
+| Excursion FDS3 total: wrist ext 70 -> flex 80 + fist (mm) | ARMS 78.9; Wehbe 49 (model +61 %) | 78.9 | PASS |
+| Excursion FDP3 total, same (mm) | ARMS 78.2; Wehbe 50 (model +56 %) | 78.2 | PASS |
+| Excursion FPL total: wrist ext 70 -> flex 80 + thumb flexion (mm) | ARMS 40.3; Wehbe 35 (model +24 %) | 43.5 | PASS |
+| Median nerve glide at the wrist (marker 20 mm proximal to the lunate, vs radius), wrist ext 60 -> flex 65 (mm, - = proximal) | Wright 1996: 19.6 | -22.0 | PASS |
+| Median nerve glide at the wrist, all digits hyperextension -> full flexion (mm, - = proximal) | Wright 1996: 9.7 | -7.9 | PASS |
+| MCP collateral ligament thumb side A: length MCP 0 -> 50 (mm) | longer in flexion | 14.6 -> 17.6 | PASS |
+| MCP collateral ligament thumb side B: length MCP 0 -> 50 (mm) | longer in flexion | 15.7 -> 15.3 | FAIL |
+| MCP collateral ligament index side A: length MCP 0 -> 90 (mm) | longer in flexion | 14.7 -> 12.4 | FAIL |
+| MCP collateral ligament middle side A: length MCP 0 -> 90 (mm) | longer in flexion | 14.9 -> 13.3 | FAIL |
+| MCP collateral ligament middle side B: length MCP 0 -> 90 (mm) | longer in flexion | 15.5 -> 12.4 | FAIL |
+| MCP collateral ligament ring side A: length MCP 0 -> 90 (mm) | longer in flexion | 13.9 -> 11.9 | FAIL |
+| MCP collateral ligament ring side B: length MCP 0 -> 90 (mm) | longer in flexion | 10.6 -> 8.8 | FAIL |
+| MCP collateral ligament little side A: length MCP 0 -> 90 (mm) | longer in flexion | 11.8 -> 8.2 | FAIL |
+| MCP collateral ligament little side B: length MCP 0 -> 90 (mm) | longer in flexion | 12.1 -> 11.1 | FAIL |
+| Tenodesis on, wrist 0 -> 60 ext: thumb MCP / IP (deg) | fingers flex | 12.6 -> 42.1 / 20.2 -> 67.3 | PASS |
+| Tenodesis on, wrist 0 -> 60 ext: index MCP / PIP (deg) | fingers flex | 22.5 -> 46.1 / 25.1 -> 51.2 | PASS |
+| Tenodesis on, wrist 0 -> 60 ext: middle MCP / PIP (deg) | fingers flex | 27.0 -> 46.2 / 30.0 -> 51.3 | PASS |
+| Tenodesis on, wrist 0 -> 60 ext: ring MCP / PIP (deg) | fingers flex | 31.5 -> 53.5 / 34.9 -> 59.5 | PASS |
+| Tenodesis on, wrist 0 -> 60 ext: little MCP / PIP (deg) | fingers flex | 35.9 -> 61.0 / 39.9 -> 67.8 | PASS |
+
+Presets (every key pose; worst key shown). Tissue: soft-tissue vertices newly > 1 mm inside a bone vs neutral (173168 vertices; pass < 0.2 %, as Phase E2). Pulley: largest growth of pulley-centre -> flexor-centreline distance vs neutral (pass < 1.5 mm).
+
+| preset | new depth > 1 mm (vertices, %, max mm) | worst structures | pulley growth (mm) | pass |
+|---|---|---|---|---|
+| Neutral | 0 (0.00 %, 0.0) | - | 0.0 - | PASS |
+| Full fist | 1350 (0.78 %, 4.5) | Cruciform part of fibrous sheath of digit of hand 124 (2.1 mm); Synovial sheaths of digits of hand 115 (2.5 mm) | 1.5 A1 pulley of ring finger / FDS4 | FAIL |
+| Hook fist | 789 (0.46 %, 2.9) | Synovial sheaths of digits of hand 115 (2.5 mm); Palmar interphalangeal ligaments 102 (2.9 mm) | 1.4 A3 pulley of little finger / FDP5 | FAIL |
+| Straight fist | 1173 (0.68 %, 4.5) | Cruciform part of fibrous sheath of digit of hand 124 (2.1 mm); Synovial sheaths of digits of hand 115 (2.5 mm) | 1.5 A1 pulley of ring finger / FDS4 | FAIL |
+| Intrinsic plus | 515 (0.30 %, 3.9) | Cruciform part of fibrous sheath of digit of hand 81 (2.1 mm); Palmaris longus muscle 63 (2.8 mm) | 1.5 A1 pulley of ring finger / FDS4 | FAIL |
+| Claw (intr. minus) | 486 (0.28 %, 3.1) | Subcutaneous fat of hand and fingers 69 (2.1 mm); Palmar interphalangeal ligaments 68 (2.2 mm) | 1.0 A3 pulley of little finger / FDP5 | FAIL |
+| Tip pinch | 523 (0.30 %, 4.2) | Subcutaneous fat of hand and fingers 82 (2.6 mm); A2 pulley of thumb 58 (3.1 mm) | 1.0 A1 pulley of index finger / FDP2 | FAIL |
+| Key pinch | 750 (0.43 %, 4.3) | Subcutaneous fat of hand and fingers 70 (2.5 mm); Flexor digitorum profundus 63 (2.5 mm) | 1.9 A1 pulley of ring finger / FDS4 | FAIL |
+| Finkelstein | 2666 (1.54 %, 4.9) | Subcutaneous fat of hand and fingers 383 (4.8 mm); Palmar surfaces of digits of hand 172 (3.9 mm) | 1.5 A1 pulley of ring finger / FDS4 | FAIL |
+| Phalen | 742 (0.43 %, 5.1) | Superficial venous palmar arch 78 (3.8 mm); Flexor digitorum profundus 65 (3.2 mm) | 0.6 A1 pulley of middle finger / FDP3 | FAIL |
+| Reverse Phalen | 381 (0.22 %, 4.5) | Extensor digitorum 64 (4.5 mm); Flexor pollicis longus 44 (3.7 mm) | 0.0 A1 pulley of index finger / FDS2 | FAIL |
+| Dart-thrower's | 511 (0.30 %, 4.4) | Common flexor tendon sheath 65 (3.3 mm); Humero-ulnar head of flexor digitorum superficialis 61 (3.2 mm) | 0.4 A1 pulley of middle finger / FDP3 | FAIL |
+| Pronation-supination | 2218 (1.28 %, 5.5) | Humero-ulnar head of flexor digitorum superficialis 533 (5.5 mm); Common flexor tendon sheath 244 (5.3 mm) | 0.0 A1 pulley of index finger / FDS2 | FAIL |
+| Kapandji 1 | 9 (0.01 %, 2.1) | Palmar surfaces of digits of hand 3 (1.2 mm); Subcutaneous fat of hand and fingers 3 (1.7 mm) | 0.3 A2 pulley of thumb / FPL1 | PASS |
+| Kapandji 2 | 19 (0.01 %, 2.1) | Subcutaneous fat of hand and fingers 9 (1.5 mm); Palmar surfaces of digits of hand 4 (1.3 mm) | 0.3 A2 pulley of thumb / FPL1 | PASS |
+| Kapandji 3 | 290 (0.17 %, 3.1) | A2 pulley of thumb 58 (3.1 mm); Palmar interphalangeal ligaments 42 (2.9 mm) | 0.2 A2 pulley of thumb / FPL1 | PASS |
+| Kapandji 4 | 398 (0.23 %, 2.9) | A2 pulley of thumb 58 (2.9 mm); Synovial sheaths of digits of hand 58 (2.4 mm) | 0.5 A3 pulley of middle finger / FDS3 | FAIL |
+| Kapandji 5 | 315 (0.18 %, 3.4) | Subcutaneous fat of hand and fingers 44 (2.7 mm); Palmar interphalangeal ligaments 35 (2.7 mm) | 0.6 A3 pulley of ring finger / FDS4 | PASS |
+| Kapandji 6 | 332 (0.19 %, 3.1) | A2 pulley of thumb 60 (3.1 mm); Subcutaneous fat of hand and fingers 54 (2.7 mm) | 1.4 A3 pulley of little finger / FDP5 | PASS |
+| Kapandji 7 | 36 (0.02 %, 3.2) | Subcutaneous fat of hand and fingers 13 (2.6 mm); Palm 5 (2.0 mm) | 0.3 A2 pulley of thumb / FPL1 | PASS |
+| Kapandji 8 | 37 (0.02 %, 2.7) | Subcutaneous fat of hand and fingers 12 (2.7 mm); Palm 5 (2.0 mm) | 0.3 A2 pulley of thumb / FPL1 | PASS |
+| Kapandji 9 | 43 (0.02 %, 2.7) | Subcutaneous fat of hand and fingers 15 (2.7 mm); Palm 7 (2.0 mm) | 0.3 A1 pulley of thumb / FPL1 | PASS |
+| Kapandji 10 | 74 (0.04 %, 2.7) | Subcutaneous fat of hand and fingers 26 (2.7 mm); Palmar interphalangeal ligaments 8 (2.7 mm) | 0.3 A1 pulley of thumb / FPL1 | PASS |
+
+fps estimate (desktop CPU of this run; I test on the Quest): "Full fist" animated at 72 Hz, JS work per frame of the viewer loop (pose, cables, tissue offsets, scene matrices). Pass = mean <= 5 ms and 95th percentile <= 13.9 ms (one frame at 72 fps; the GPU is not measured here).
+
+| view | JS ms per frame: mean / 95th pct / max | draw calls | triangles | pass |
+|---|---|---|---|---|
+| present | 3.74 / 12.00 / 16.7 | 413 | 363702 | PASS |
+| realistic | 4.08 / 16.10 / 18.3 | 413 | 363702 | FAIL |
+| cadaver | 4.18 / 12.70 / 16.9 | 413 | 363702 | PASS |
+
+E4 failed: MCP collateral ligament thumb side B: length MCP 0 -> 50 (mm); MCP collateral ligament index side A: length MCP 0 -> 90 (mm); MCP collateral ligament middle side A: length MCP 0 -> 90 (mm); MCP collateral ligament middle side B: length MCP 0 -> 90 (mm); MCP collateral ligament ring side A: length MCP 0 -> 90 (mm); MCP collateral ligament ring side B: length MCP 0 -> 90 (mm); MCP collateral ligament little side A: length MCP 0 -> 90 (mm); MCP collateral ligament little side B: length MCP 0 -> 90 (mm); preset Full fist; preset Hook fist; preset Straight fist; preset Intrinsic plus; preset Claw (intr. minus); preset Tip pinch; preset Key pinch; preset Finkelstein; preset Phalen; preset Reverse Phalen; preset Dart-thrower's; preset Pronation-supination; preset Kapandji 4; fps realistic

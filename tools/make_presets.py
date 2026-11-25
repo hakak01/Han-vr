@@ -63,7 +63,7 @@ def main():
     Z = {d: 0.0 for d in rig['dofs']}
     relax = fingers(30, 40, 'link', (3, 4, 5))
     pre = [dict(name='Neutral', keys=[dict(Z)]),
-           dict(name='Full fist', keys=[dict(fingers(90, 110), cmc4=10, cmc5=20, cmc1_fe=20, mcp1=50, ip1=40)]),
+           dict(name='Full fist', keys=[dict(fingers(90, 110), cmc4=10, cmc5=20, cmc1_fe=0, cmc1_aa=20, mcp1=50, ip1=30)]),  # E4: thumb clear of the fingers
            dict(name='Hook fist', keys=[fingers(0, 110)]),
            dict(name='Straight fist', keys=[fingers(90, 110, 0)]),
            dict(name='Intrinsic plus', keys=[dict(fingers(90, 0, 0), cmc1_aa=30)]),

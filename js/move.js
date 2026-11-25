@@ -143,14 +143,14 @@ export class Move {
   glide(c) {
     if (c.mode === 'tendon') return c.dT;
     if (c.mode === 'common') return c.d;
-    if (c.uWrist === undefined) {           // rest sample nearest the capitate centre (wrist level)
-      const ce = this.data.cab.arc_joints['Capitate bone'].center; let best = 1e9;
+    if (c.uWrist === undefined) {           // marker: 20 mm proximal (along the cable) to its point nearest the lunate
+      const ce = this.data.rig.wrist.bones['Lunate bone'].centroid; let best = 1e9;
       for (let i = 0; i < c.n; i++) {
         const d = Math.hypot(c.P[3 * i] - ce[0], c.P[3 * i + 1] - ce[1], c.P[3 * i + 2] - ce[2]);
-        if (d < best) { best = d; c.uWrist = c.sr[i]; }
+        if (d < best) { best = d; c.uWrist = Math.max(c.sr[i] - 0.02, 0); }
       }
     }
-    // material at uWrist: where is it now, relative to the posed point at the same rest fraction
+    // material at the marker relative to its bed point (proximal to the wrist bend = relative to the radius)
     return this.cables.sigma(c, c.uWrist) - this.cables.follow(c, c.uWrist);
   }
   excursion(c) { return (this.glide(c) - (this.neutralInfo ? this.neutralInfo[c.id] : 0)) * 1e3; }   // mm vs neutral

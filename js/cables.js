@@ -31,6 +31,7 @@ export function seg(s, u) {
 }
 const interp = (u, xs, ys) => { const i = seg(xs, u), f = SEGF[0]; return ys[i] + f * (ys[i + 1] - ys[i]); };
 const F3 = (a) => Float64Array.from(a.flat());
+import { NerveTrees } from './nervetree.js';
 
 export class Cables {
   constructor(cab, rig) {
@@ -60,6 +61,7 @@ export class Cables {
     this.prev = null; this.dL = {};
     this.order = [...this.list].sort((a, b) => !!a.common - !!b.common);
     this.muscle = {};
+    this.trees = new NerveTrees(this);
   }
 
   // M: array of THREE.Matrix4 (skin-joint order); pose: anatomical degrees
@@ -71,6 +73,9 @@ export class Cables {
       c.fresh = c.common ? c.members.some((m) => this.byId.get(m).fresh) : c.deps.some((j) => ch[j]);
       if (c.fresh) this.cable(c);
     }
+    const tr = this.trees.trees.filter((T) => T.mem.some((c) => c.fresh));   // a tree is solved as a whole
+    for (const T of tr) for (const c of T.mem) if (!c.fresh) { this.cable(c); c.fresh = true; }
+    if (tr.length) { this.trees.update(tr); for (const T of tr) for (const c of T.mem) { tangents(c.Pp, c.n, c.T); arclen(c.Pp, c.n, c.sAt); } }
     this.muscle = {};
     for (const c of this.list) if (c.kind === 'tendon' && !c.common) (this.muscle[c.muscle] ||= []).push(c.dT);
     for (const k in this.muscle) this.muscle[k] = this.muscle[k].reduce((a, b) => a + b, 0) / this.muscle[k].length;
@@ -115,7 +120,8 @@ export class Cables {
       m[n - 1] = Lr;
       for (let k = n - 2; k >= 0; k--) m[k] = m[k + 1] - dm[k];
       c.dT = -m[0]; this.dL[c.id] = c.dT; c.mode = 'tendon';
-    } else if (Lp >= Lr) c.mode = 'taut';
+    } else if (c.tree) c.mode = 'tree';               // nervetree.js: glide + wave after the tree is solved
+    else if (Lp >= Lr) c.mode = 'taut';
     else {                                     // slack: wave where the bed shortened
       c.mode = 'slack';
       const r = new Float64Array(n + 1);
@@ -207,8 +213,16 @@ export class Cables {
   }
 
   // posed arc length of the material point at rest arc length u
+  // proximal to the musculotendinous junction the material shortens with the belly: slide fades to 0 at the
+  // origin (no tendon material pushed past the origin into bone)
   sigma(c, u) {
+    const j = c.u_mtj;
+    if ((c.mode === 'tendon' || c.mode === 'common') && j && u < j) return this.follow(c, u) + (this.sigma0(c, j) - this.follow(c, j)) * Math.max(u, 0) / j;
+    return this.sigma0(c, u);
+  }
+  sigma0(c, u) {
     if (c.mode === 'common') return u + c.d;
+    if (c.mode === 'tree') return this.trees.sigma(c, u);
     const n = c.n;
     if (c.mode === 'tendon') {
       const m = c.m, sp = c.sp;
